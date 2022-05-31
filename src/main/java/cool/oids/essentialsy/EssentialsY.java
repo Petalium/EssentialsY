@@ -12,26 +12,26 @@ public final class EssentialsY extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Objects.requireNonNull(this.getCommand("fly")).setExecutor(new CommandFly());
-        Objects.requireNonNull(this.getCommand("msg")).setExecutor(new CommandMsg());
-        Objects.requireNonNull(this.getCommand("up")).setExecutor(new CommandUp());
-        Objects.requireNonNull(this.getCommand("down")).setExecutor(new CommandDown());
-        Objects.requireNonNull(this.getCommand("top")).setExecutor(new CommandTop());
+        this.getCommand("fly").setExecutor(new CommandFly());
+        this.getCommand("msg").setExecutor(new CommandMsg());
+        this.getCommand("up").setExecutor(new CommandUp());
+        this.getCommand("down").setExecutor(new CommandDown());
+        this.getCommand("top").setExecutor(new CommandTop());
 
-        Objects.requireNonNull(this.getCommand("tpa")).setExecutor(new CommandTpa());
-        Objects.requireNonNull(this.getCommand("tpahere")).setExecutor(new CommandTpahere());
-        Objects.requireNonNull(this.getCommand("tpaccept")).setExecutor(new CommandTpaccept());
-        Objects.requireNonNull(this.getCommand("tpdeny")).setExecutor(new CommandTpdeny());
-        Objects.requireNonNull(this.getCommand("tpacancel")).setExecutor(new CommandTpacancel());
+        this.getCommand("tpa").setExecutor(new CommandTpa());
+        this.getCommand("tpahere").setExecutor(new CommandTpahere());
+        this.getCommand("tpaccept").setExecutor(new CommandTpaccept());
+        this.getCommand("tpdeny").setExecutor(new CommandTpdeny());
+        this.getCommand("tpacancel").setExecutor(new CommandTpacancel());
 
-        Objects.requireNonNull(this.getCommand("gma")).setExecutor(new CommandGma());
-        Objects.requireNonNull(this.getCommand("gmc")).setExecutor(new CommandGmc());
-        Objects.requireNonNull(this.getCommand("gms")).setExecutor(new CommandGms());
-        Objects.requireNonNull(this.getCommand("gmsp")).setExecutor(new CommandGmsp());
+        this.getCommand("gma").setExecutor(new CommandGma());
+        this.getCommand("gmc").setExecutor(new CommandGmc());
+        this.getCommand("gms").setExecutor(new CommandGms());
+        this.getCommand("gmsp").setExecutor(new CommandGmsp());
 
-        Objects.requireNonNull(this.getCommand("ban")).setExecutor(new CommandBan());
-        Objects.requireNonNull(this.getCommand("unban")).setExecutor(new CommandUnban());
-        Objects.requireNonNull(this.getCommand("kick")).setExecutor(new CommandKick());
+        this.getCommand("ban").setExecutor(new CommandBan());
+        this.getCommand("unban").setExecutor(new CommandUnban());
+        this.getCommand("kick").setExecutor(new CommandKick());
     }
 
     @Override
