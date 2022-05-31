@@ -106,9 +106,9 @@ public class Utils {
                     }
 
                     return player;
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Player does not exist");
                 }
+
+                sender.sendMessage(ChatColor.RED + "Player does not exist");
             }
 
             return senderPlayer;
