@@ -1,5 +1,6 @@
 package cool.oids.essentialsy.commands.punish;
 import cool.oids.essentialsy.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,6 +36,7 @@ public class CommandKick implements CommandExecutor {
                 }
 
                 player.kickPlayer(playerKickMessage.toString());
+                Bukkit.broadcastMessage(broadcastMessage.toString());
 
                 return true;
             }
