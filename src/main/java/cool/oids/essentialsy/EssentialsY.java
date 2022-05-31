@@ -43,8 +43,6 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("kick").setExecutor(new CommandKick());
 
         getServer().getPluginManager().registerEvents(new ItemLauncher(), this);
-
-        ItemLauncher.createLauncher();
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.util.Objects;
 public class ItemLauncher implements Listener {
     public static ItemStack launcher;
 
-    public static void createLauncher() {
+    public ItemLauncher() {
         launcher = new ItemStack(Material.CARROT_ON_A_STICK, 1);
         ItemMeta meta = launcher.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
