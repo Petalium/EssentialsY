@@ -3,6 +3,7 @@ import cool.oids.essentialsy.commands.gamemodes.*;
 import cool.oids.essentialsy.commands.misc.*;
 import cool.oids.essentialsy.commands.punish.*;
 import cool.oids.essentialsy.commands.tpa.*;
+import cool.oids.essentialsy.items.ItemLauncher;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +23,9 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("sethealth").setExecutor(new CommandSethealth());
         this.getCommand("sethunger").setExecutor(new CommandSethunger());
         this.getCommand("ec").setExecutor(new CommandEC());
+        this.getCommand("workbench").setExecutor(new CommandWorkBench());
         this.getCommand("bigtree").setExecutor(new CommandBigTree());
+        this.getCommand("launcher").setExecutor(new CommandLauncher());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
@@ -38,6 +41,10 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("ban").setExecutor(new CommandBan());
         this.getCommand("unban").setExecutor(new CommandUnban());
         this.getCommand("kick").setExecutor(new CommandKick());
+
+        getServer().getPluginManager().registerEvents(new ItemLauncher(), this);
+
+        ItemLauncher.createLauncher();
     }
 
     @Override

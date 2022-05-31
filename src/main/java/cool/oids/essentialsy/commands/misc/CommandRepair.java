@@ -4,12 +4,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 
-public class CommandRepair implements CommandExecutor {
+import java.util.ArrayList;
+
+public class CommandRepair implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
@@ -19,13 +22,12 @@ public class CommandRepair implements CommandExecutor {
                 ItemStack currentItem = inventory.getItemInMainHand();
                 if (currentItem.getType().isBlock() || !itemDamagable(currentItem)) {
                     sender.sendMessage(ChatColor.RED + "Item cannot be repaired");
-                    return false;
+                    return true;
                 }
 
                 repairItem(currentItem);
                 return true;
             }
-
             if (args[0].equalsIgnoreCase("all")) {
                 ItemStack[] items = inventory.getContents();
                 for (final ItemStack item : items) {
@@ -42,7 +44,16 @@ public class CommandRepair implements CommandExecutor {
 
         return false;
     }
+    @Override
+    public ArrayList<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        ArrayList<String> options = new ArrayList<>();
+        if (args.length == 1) {
+            options.add("hand");
+            options.add("all");
+        }
 
+        return options;
+    }
     void repairItem(ItemStack item) {
         if (item.getItemMeta() instanceof Damageable damageable) {
             damageable.setDamage(0);

@@ -45,9 +45,15 @@ commands:
     description: Opens enderchest
     usage: /ec
     aliases: [enderchest]
+  workbench:
+    description: Opens workbench
+    usage: /workbench
   bigtree:
     description: Spawns a random big tree where the player is facing
     usage: /bigtree
+  launcher:
+    description: Gives player launching item
+    usage: /launch {Player}
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}
