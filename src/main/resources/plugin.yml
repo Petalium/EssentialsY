@@ -1,0 +1,62 @@
+name: EssentialsY
+version: '${version}'
+main: cool.oids.essentialsy.EssentialsY
+api-version: 1.18
+prefix: EssentialsY >
+load: STARTUP
+authors: [ oids ]
+description: awesome
+website: google.com
+commands:
+  fly:
+    description: Toggles fly
+    usage: /fly (Player)
+  msg:
+    description: Messages another player
+    usage: /msg {Player} {Message}
+    aliases: [message]
+  up:
+    description: Moves the player up by a number of blocks
+    usage: /up {Count}
+  down:
+    description: Moves the player down to the nearest hole
+    usage: /down
+  top:
+    description: Moves the player up to the nearest surface
+    usage: /top
+  tpa:
+    description: Sends a request to teleport to another player
+    usage: /tpa {Player}
+  tpahere:
+    description: Sends a request to teleport another player to you
+    usage: /tpahere {Player}
+  tpaccept:
+    description: Accepts a teleport request
+    usage: /tpaccept (Player)
+  tpdeny:
+    description: Denies a teleport request
+    usage: /tpdeny (Player)
+  tpacancel:
+    description: Cancels a teleport request
+    usage: /tpacancel (Player)
+  kick:
+    description: Kicks player
+    usage: /kick {Player} (Reason)
+  ban:
+    description: Bans player
+    usage: /ban {Player} (Reason)
+  unban:
+    description: Unbans player
+    usage: /unban {Player}
+  gma:
+    description: Sets gamemode to adventure
+    usage: /gma (Player)
+  gmc:
+    description: Sets gamemode to creative
+    usage: /gmc (Player)
+  gms:
+    description: Sets gamemode to survival
+    usage: /gms (Player)
+  gmsp:
+    description: Sets gamemode to spectator
+    usage: /gmsp (Player)
