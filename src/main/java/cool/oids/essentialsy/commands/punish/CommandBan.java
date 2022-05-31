@@ -51,6 +51,8 @@ public class CommandBan implements CommandExecutor {
                     player.kickPlayer(playerKickMessage.toString());
                 }
 
+                Bukkit.broadcastMessage(broadcastMessage.toString());
+
                 return true;
             }
         }

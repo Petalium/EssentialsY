@@ -72,8 +72,10 @@ public class Utils {
                 }
 
                 sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
+                return null;
             } else {
                 sender.sendMessage(ChatColor.RED + "Player does not exist");
+                return null;
             }
         }
 
@@ -88,6 +90,7 @@ public class Utils {
                 return trimmed;
             } else {
                 sender.sendMessage(ChatColor.RED + "Player does not exist");
+                return null;
             }
         }
 

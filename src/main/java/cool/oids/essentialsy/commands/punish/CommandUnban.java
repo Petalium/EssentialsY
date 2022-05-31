@@ -13,10 +13,8 @@ import static org.bukkit.Bukkit.getPlayerExact;
 public class CommandUnban implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player player) {
-            player = Utils.extractPlayerArgWithWarnings(sender, args);
-            if (player != null) {
-                String playerName = player.getName();
+            String playerName = Utils.extractPlayerNameArg(sender, args);
+            if (playerName != null) {
                 BanList banList = Bukkit.getBanList(BanList.Type.NAME);
 
                 if (banList.isBanned(playerName)) {
@@ -25,9 +23,8 @@ public class CommandUnban implements CommandExecutor {
                 } else {
                     sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + playerName + ChatColor.RED + " is not banned");
                 }
+                return true;
             }
-        }
-
-        return false;
+            return false;
     }
 }
