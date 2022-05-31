@@ -31,20 +31,17 @@ public class CommandKick implements CommandExecutor {
                         Bukkit.broadcastMessage
                                 (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
                                     ChatColor.GRAY + trimmed + ChatColor.BLUE + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
-                    }
-                    else {
+                    } else {
                         player.kickPlayer
                             (ChatColor.BLUE + "Kicked by " + ChatColor.YELLOW + ((Player) sender).getDisplayName());
                         Bukkit.broadcastMessage
                                 (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " + ChatColor.GRAY + trimmed);
                     }
-                }
-                else {
+                } else {
                     sender.sendMessage(ChatColor.RED + "Player does not exist");
                 }
                 return true;
-            }
-            else {
+            } else {
                 sender.sendMessage(ChatColor.RED + "No user inputted");
                 return false;
             }

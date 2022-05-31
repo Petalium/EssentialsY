@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getPlayerExact;
 
-public class CommandFly implements CommandExecutor {
+public class CommandHeal implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -26,9 +26,8 @@ public class CommandFly implements CommandExecutor {
                     return true;
                 }
             }
-            player.setAllowFlight(!player.getAllowFlight());
-            sender.sendMessage(player.getAllowFlight() ? ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Enabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName() :
-                ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Disabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName());
+            player.setHealth(20.0);
+            sender.sendMessage(ChatColor.AQUA + "Restored player " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " health");
             return true;
         }
         return false;

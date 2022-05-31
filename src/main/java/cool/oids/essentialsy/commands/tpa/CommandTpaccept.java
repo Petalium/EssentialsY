@@ -31,7 +31,7 @@ public class CommandTpaccept implements CommandExecutor {
                 ActiveTpas.removeSender(ActiveTpas.removeRecipient((Player) sender));
                 tpaSender.teleport(((Player) sender).getLocation());
                 sender.sendMessage(ChatColor.AQUA + "Accepted " + ChatColor.YELLOW + tpaSender.getName() + ChatColor.AQUA + " tpa request");
-                tpaSender.sendMessage(ChatColor.YELLOW + tpaSender.getName() + ChatColor.AQUA + " accepted your tpa request");
+                tpaSender.sendMessage(ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " accepted your tpa request");
             }
             else if (args.length > 0)
                 sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + player.getDisplayName() + ChatColor.RED + " has not sent a tpa request recently");
