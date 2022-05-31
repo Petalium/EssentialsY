@@ -9,7 +9,7 @@ description: awesome
 commands:
   fly:
     description: Toggles fly
-    usage: /fly (Player)
+    usage: /fly [Player]
   msg:
     description: Messages another player
     usage: /msg {Player} {Message}
@@ -23,6 +23,21 @@ commands:
   top:
     description: Moves the player up to the nearest surface
     usage: /top
+  s:
+    description: Teleports player to sender
+    usage: /s {Player}
+  feed:
+    description: Replenishes players hunger
+    usage: /feed [Player]
+  heal:
+    description: Replenishes players health
+    usage: /heal [Player]
+  sethealth:
+    description: Sets a players health
+    usage: /sethealth {Amount} [Player]
+  sethunger:
+    description: Sets a players hunger
+    usage: /sethunger {Amount} [Player]
   repair:
     description: Repairs items
     usage: /repair [hand|all]
@@ -34,31 +49,31 @@ commands:
     usage: /tpahere {Player}
   tpaccept:
     description: Accepts a teleport request
-    usage: /tpaccept (Player)
+    usage: /tpaccept [Player]
   tpdeny:
     description: Denies a teleport request
-    usage: /tpdeny (Player)
+    usage: /tpdeny [Player]
   tpacancel:
     description: Cancels a teleport request
-    usage: /tpacancel (Player)
+    usage: /tpacancel [Player]
   kick:
     description: Kicks player
-    usage: /kick {Player} (Reason)
+    usage: /kick {Player} [Reason]
   ban:
     description: Bans player
-    usage: /ban {Player} (Reason)
+    usage: /ban {Player} [Reason]
   unban:
     description: Unbans player
     usage: /unban {Player}
   gma:
     description: Sets gamemode to adventure
-    usage: /gma (Player)
+    usage: /gma [Player]
   gmc:
     description: Sets gamemode to creative
-    usage: /gmc (Player)
+    usage: /gmc [Player]
   gms:
     description: Sets gamemode to survival
-    usage: /gms (Player)
+    usage: /gms [Player]
   gmsp:
     description: Sets gamemode to spectator
-    usage: /gmsp (Player)
+    usage: /gmsp [Player]

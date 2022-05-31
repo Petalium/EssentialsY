@@ -6,8 +6,6 @@ import cool.oids.essentialsy.commands.tpa.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
-
 public final class EssentialsY extends JavaPlugin {
 
     @Override
@@ -18,6 +16,11 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("down").setExecutor(new CommandDown());
         this.getCommand("top").setExecutor(new CommandTop());
         this.getCommand("repair").setExecutor(new CommandRepair());
+        this.getCommand("s").setExecutor(new CommandS());
+        this.getCommand("feed").setExecutor(new CommandFeed());
+        this.getCommand("heal").setExecutor(new CommandHeal());
+        this.getCommand("sethealth").setExecutor(new CommandSethealth());
+        this.getCommand("sethunger").setExecutor(new CommandSethunger());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
