@@ -23,6 +23,9 @@ commands:
   top:
     description: Moves the player up to the nearest surface
     usage: /top
+  repair:
+    description: Repairs items
+    usage: /repair [hand|all]
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}

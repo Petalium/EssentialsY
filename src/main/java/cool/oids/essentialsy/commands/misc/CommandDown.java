@@ -13,21 +13,21 @@ public class CommandDown implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            World world = player.getWorld();
             int posX = player.getLocation().getBlockX();
             int posZ = player.getLocation().getBlockZ();
             float yaw = player.getLocation().getYaw();
             float pitch = player.getLocation().getPitch();
-            int newY = Utils.getNearestHole(player.getLocation(), world);
 
+            World world = player.getWorld();
+            int newY = Utils.getNearestHole(player.getLocation(), world);
             if (newY > -65) {
                 player.teleport(new Location(world, posX, newY, posZ, yaw, pitch));
                 sender.sendMessage(ChatColor.AQUA + "Moved down into nearest hole" +
                         ChatColor.GOLD + " (" + posX + ", " + newY + ", " + posZ + ")");
-            }
-            else {
+            } else {
                 sender.sendMessage(ChatColor.RED + "No hole found below");
             }
+
             return true;
         }
         return false;

@@ -17,6 +17,7 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("up").setExecutor(new CommandUp());
         this.getCommand("down").setExecutor(new CommandDown());
         this.getCommand("top").setExecutor(new CommandTop());
+        this.getCommand("repair").setExecutor(new CommandRepair());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
