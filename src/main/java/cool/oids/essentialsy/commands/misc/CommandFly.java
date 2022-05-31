@@ -12,16 +12,14 @@ import static org.bukkit.Bukkit.getPlayerExact;
 public class CommandFly implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if (sender instanceof Player player) {
-            player = Utils.extractPlayerArgWithWarnings(sender, args);
-            if (player != null) {
-                player.setAllowFlight(!player.getAllowFlight());
-                sender.sendMessage(player.getAllowFlight() ? ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Enabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName() :
-                        ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Disabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName());
-                return true;
-            }
+        Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+        if (player != null) {
+            player.setAllowFlight(!player.getAllowFlight());
+            sender.sendMessage(player.getAllowFlight() ? ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Enabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName() :
+                    ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Disabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName());
+            return true;
         }
+
         return false;
     }
 }

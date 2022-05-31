@@ -94,4 +94,26 @@ public class Utils {
         sender.sendMessage(ChatColor.RED + "No user inputted");
         return null;
     }
+
+    public static Player extractPlayerArgOrSenderWithWarnings(CommandSender sender, String[] args) {
+        if (sender instanceof Player senderPlayer) {
+            if (args.length > 0) {
+                String trimmed = args[0].trim();
+                if (trimmed.length() > 2) {
+                    Player player = getPlayerExact(trimmed);
+                    if (player == null) {
+                        sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
+                    }
+
+                    return player;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "Player does not exist");
+                }
+            }
+
+            return senderPlayer;
+        }
+
+        return null;
+    }
 }
