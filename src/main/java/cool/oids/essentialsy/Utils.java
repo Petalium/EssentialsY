@@ -1,9 +1,10 @@
 package cool.oids.essentialsy;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import static org.bukkit.Bukkit.getPlayerExact;
 
 public class Utils {
     public static String getMessage(String[] args, int index) {
@@ -58,5 +59,39 @@ public class Utils {
             }
         }
         return y;
+    }
+
+    public static Player extractPlayerArgWithWarnings(CommandSender sender, String[] args) {
+        if (args.length > 0) {
+            String trimmed = args[0].trim();
+            if (trimmed.length() > 2) {
+                Player player = getPlayerExact(trimmed);
+
+                if (player != null) {
+                    return player;
+                }
+
+                sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
+            } else {
+                sender.sendMessage(ChatColor.RED + "Player does not exist");
+            }
+        }
+
+        sender.sendMessage(ChatColor.RED + "No user inputted");
+        return null;
+    }
+
+    public static String extractPlayerNameArg(CommandSender sender, String[] args) {
+        if (args.length > 0) {
+            String trimmed = args[0].trim();
+            if (trimmed.length() > 2) {
+                return trimmed;
+            } else {
+                sender.sendMessage(ChatColor.RED + "Player does not exist");
+            }
+        }
+
+        sender.sendMessage(ChatColor.RED + "No user inputted");
+        return null;
     }
 }

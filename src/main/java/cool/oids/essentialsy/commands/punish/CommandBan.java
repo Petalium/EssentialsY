@@ -12,60 +12,48 @@ import static org.bukkit.Bukkit.getPlayerExact;
 public class CommandBan implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         if (sender instanceof Player player) {
-            if (args.length > 0) {
-                String trimmed = args[0].trim();
-                if (trimmed.length() > 2) {
-                    player = getPlayerExact(trimmed);
-                    BanList banList = Bukkit.getBanList(BanList.Type.NAME);
+            String playerName = Utils.extractPlayerNameArg(sender, args);
+            if (playerName != null) {
+                BanList banList = Bukkit.getBanList(BanList.Type.NAME);
 
-                        if (banList.isBanned(trimmed)) {
-                            sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is already banned");
-                            return true;
-                        } else {
-                            if (player == null) {
-                                if (args.length > 1) {
-                                    banList.addBan(trimmed, Utils.getMessage(args, 1), null, ((Player) sender).getDisplayName());
-                                    Bukkit.broadcastMessage
-                                            (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " banned " + ChatColor.GRAY + trimmed + ChatColor.RED + " for " +
-                                                    ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args, 1) + "\"");
-                                }
-                                else {
-                                    banList.addBan(trimmed, "none", null, ((Player) sender).getDisplayName());
-                                    Bukkit.broadcastMessage
-                                            (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " banned " + ChatColor.GRAY + trimmed);
-                                }
-                            }
-                            else {
+                if (banList.isBanned(playerName)) {
+                    sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + playerName + ChatColor.RED + " is already banned");
+                    return true;
+                }
 
-                            if (args.length > 1) {
-                                banList.addBan(trimmed, Utils.getMessage(args, 1), null, ((Player) sender).getDisplayName());
-                                player.kickPlayer
-                                (ChatColor.RED + "Banned by " + ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
-                                Bukkit.broadcastMessage
-                                        (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " banned " + ChatColor.GRAY + args[0] + ChatColor.RED + " for " +
-                                                ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args, 1) + "\"");
-                            } else {
-                                banList.addBan(trimmed, "none", null, ((Player) sender).getDisplayName());
-                                player.kickPlayer
-                                        (ChatColor.RED + "Banned by " + ChatColor.YELLOW + ((Player) sender).getDisplayName());
-                                Bukkit.broadcastMessage
-                                        (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " banned " + ChatColor.GRAY + trimmed);
-                            }
-                        }
+                String reason;
+                if (args.length > 1)
+                    reason = Utils.getMessage(args, 1);
+                else
+                    reason = "none";
+
+                player = Bukkit.getPlayerExact(playerName);
+                banList.addBan(playerName, reason, null, ((Player) sender).getDisplayName());
+
+                StringBuilder broadcastMessage = new StringBuilder();
+                broadcastMessage.append(ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.RED + " banned " + ChatColor.GRAY + playerName);
+
+                if (!reason.equals("none")) {
+                    broadcastMessage.append(ChatColor.RED + " for " +
+                            ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
+                }
+
+                if (player != null) {
+                    StringBuilder playerKickMessage = new StringBuilder();
+                    playerKickMessage.append(ChatColor.RED + "Banned by " + ChatColor.YELLOW + ((Player) sender).getDisplayName());
+
+                    if (!reason.equals("none")) {
+                        playerKickMessage.append(ChatColor.RED + " for " + ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
                     }
+
+                    player.kickPlayer(playerKickMessage.toString());
                 }
-                else {
-                    sender.sendMessage(ChatColor.RED + "Player does not exist");
-                }
+
                 return true;
             }
-            else {
-                sender.sendMessage(ChatColor.RED + "No user inputted");
-                return false;
-            }
         }
+
         return false;
     }
 }

@@ -12,43 +12,37 @@ import static org.bukkit.Bukkit.getPlayerExact;
 public class CommandKick implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         if (sender instanceof Player player) {
-            if (args.length > 0) {
-                String trimmed = args[0].trim();
-                if (trimmed.length() > 2) {
-                    player = getPlayerExact(trimmed);
+            player = Utils.extractPlayerArgWithWarnings(sender, args);
+            if (player != null) {
+                String playerName = player.getName();
+                String reason;
+                if (args.length > 1)
+                    reason = Utils.getMessage(args, 1);
+                else
+                    reason = "none";
 
-                    if (player == null) {
-                        sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + args[0] + ChatColor.RED + " is not online");
-                        return true;
-                    }
+                StringBuilder broadcastMessage = new StringBuilder();
+                broadcastMessage.append(ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
+                        ChatColor.GRAY + playerName);
 
-                    if (args.length > 1) {
-                        player.kickPlayer
-                            (ChatColor.BLUE + "Kicked by " + ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE +
-                                " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
-                        Bukkit.broadcastMessage
-                                (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
-                                    ChatColor.GRAY + trimmed + ChatColor.BLUE + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
-                    }
-                    else {
-                        player.kickPlayer
-                            (ChatColor.BLUE + "Kicked by " + ChatColor.YELLOW + ((Player) sender).getDisplayName());
-                        Bukkit.broadcastMessage
-                                (ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " + ChatColor.GRAY + trimmed);
-                    }
+                if (!reason.equals("none")) {
+                    broadcastMessage.append(ChatColor.BLUE + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
                 }
-                else {
-                    sender.sendMessage(ChatColor.RED + "Player does not exist");
+
+                StringBuilder playerKickMessage = new StringBuilder();
+                playerKickMessage.append(ChatColor.BLUE + "Kicked by " + ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE);
+
+                if (!reason.equals("none")) {
+                    playerKickMessage.append(" for " + ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
                 }
+
+                player.kickPlayer(playerKickMessage.toString());
+
                 return true;
             }
-            else {
-                sender.sendMessage(ChatColor.RED + "No user inputted");
-                return false;
-            }
         }
+
         return false;
     }
 }
