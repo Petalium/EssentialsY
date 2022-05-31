@@ -21,6 +21,7 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("heal").setExecutor(new CommandHeal());
         this.getCommand("sethealth").setExecutor(new CommandSethealth());
         this.getCommand("sethunger").setExecutor(new CommandSethunger());
+        this.getCommand("ec").setExecutor(new CommandEC());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());

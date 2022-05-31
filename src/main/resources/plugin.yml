@@ -41,6 +41,10 @@ commands:
   repair:
     description: Repairs items
     usage: /repair [hand|all]
+  ec:
+    description: Opens enderchest
+    usage: /ec
+    aliases: [enderchest]
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}

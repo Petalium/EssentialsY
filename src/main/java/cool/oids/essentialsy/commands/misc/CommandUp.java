@@ -12,17 +12,15 @@ public class CommandUp implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            int posX = player.getLocation().getBlockX();
-            int posY = player.getLocation().getBlockY();
-            int posZ = player.getLocation().getBlockZ();
+            Location pos = player.getLocation();
             float yaw = player.getLocation().getYaw();
             float pitch = player.getLocation().getPitch();
             World world = player.getWorld();
-            int numBlocks;
+            int numBlocks = 0;
 
             if (args.length > 0) {
                 if (args[0].equalsIgnoreCase("max")) {
-                    numBlocks = (320 - posY);
+                    numBlocks = (320 - pos.getBlockY());
                 } else {
                     try {
                         numBlocks = Integer.parseInt(args[0].trim());
@@ -39,14 +37,14 @@ public class CommandUp implements CommandExecutor {
                 return true;
             }
 
-            if (posY + numBlocks <= 320) {
-                player.teleport(new Location(world, posX, (posY + numBlocks), posZ, yaw, pitch));
-                world.getBlockAt(posX, posY - 1, posZ).setType(Material.STONE);
+            if (pos.getY() + numBlocks <= 320) {
+                player.teleport(new Location(world, pos.getX(), (pos.getY() + numBlocks), pos.getZ(), yaw, pitch));
+                world.getBlockAt(pos.getBlockX(), pos.getBlockY() - 1, pos.getBlockZ()).setType(Material.STONE);
 
                 sender.sendMessage(ChatColor.AQUA + "Moved up " + numBlocks + " blocks" +
-                        ChatColor.GOLD + " (" + posX + ", " + (posY + numBlocks) + ", " + posZ + ")");
+                        ChatColor.GOLD + " (" + pos.getBlockX() + ", " + (pos.getBlockY() + numBlocks) + ", " + pos.getBlockZ() + ")");
             } else {
-                sender.sendMessage(ChatColor.RED + "Position out of bounds " + ChatColor.GOLD + "(" + (posY + numBlocks) + ")");
+                sender.sendMessage(ChatColor.RED + "Position out of bounds " + ChatColor.GOLD + "(" + (pos.getBlockZ() + numBlocks) + ")");
             }
             return true;
         }

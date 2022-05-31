@@ -12,6 +12,7 @@ import static org.bukkit.Bukkit.getPlayerExact;
 public class CommandBan implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         if (sender instanceof Player player) {
             String playerName = Utils.extractPlayerNameArg(sender, args);
             if (playerName != null) {
