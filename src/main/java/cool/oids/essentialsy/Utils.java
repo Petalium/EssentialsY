@@ -112,6 +112,7 @@ public class Utils {
                 }
 
                 sender.sendMessage(ChatColor.RED + "Player does not exist");
+                return null;
             }
 
             return senderPlayer;

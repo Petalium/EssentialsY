@@ -16,9 +16,8 @@ public class CommandHeal implements CommandExecutor {
         if (player != null) {
             player.setHealth(20.0);
             sender.sendMessage(ChatColor.AQUA + "Restored player " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " health");
-            return true;
         }
 
-        return false;
+        return true;
     }
 }

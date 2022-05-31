@@ -14,9 +14,8 @@ public class CommandFeed implements CommandExecutor {
         if (player != null) {
             player.setFoodLevel(20);
             sender.sendMessage(ChatColor.AQUA + "Restored player " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " hunger");
-            return true;
         }
 
-        return false;
+        return true;
     }
 }

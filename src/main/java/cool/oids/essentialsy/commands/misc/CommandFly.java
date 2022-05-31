@@ -17,9 +17,8 @@ public class CommandFly implements CommandExecutor {
             player.setAllowFlight(!player.getAllowFlight());
             sender.sendMessage(player.getAllowFlight() ? ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Enabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName() :
                     ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Disabled" + ChatColor.AQUA + " for " + ChatColor.YELLOW + player.getDisplayName());
-            return true;
         }
 
-        return false;
+        return true;
     }
 }

@@ -46,7 +46,7 @@ commands:
     usage: /ec
     aliases: [enderchest]
   bigtree:
-    description: Spawns a big tree where the player is looking
+    description: Spawns a random big tree where the player is facing
     usage: /bigtree
   tpa:
     description: Sends a request to teleport to another player

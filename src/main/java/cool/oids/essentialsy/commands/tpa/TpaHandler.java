@@ -27,14 +27,13 @@ public class TpaHandler {
         final Runnable runnable = new Runnable() {
             int timer = 60; //time (SECONDS) till TPA expires
             public void run() {
-                System.out.println(timer);
                 timer--;
 
                 if (timer < 0 || !(ActiveTpas.getActiveRecipients().contains(player))) {
                     activeRequest = false;
                     if (ActiveTpas.getActiveRecipients().contains(player)) {
-                        sender.sendMessage(ChatColor.AQUA + "Teleport request to " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " has expired");
-                        player.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.AQUA + " teleport request has expired");
+                        sender.sendMessage(ChatColor.GRAY + "Teleport request to " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.GRAY + " has expired");
+                        player.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + " teleport request has expired");
                         ActiveTpas.removeSender(ActiveTpas.removeRecipient(player));
                     }
                     scheduler.shutdown();
