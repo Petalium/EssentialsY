@@ -1,6 +1,6 @@
 package cool.oids.essentialsy.commands.misc;
+
 import cool.oids.essentialsy.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,15 +13,16 @@ public class CommandTop implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            int posX = player.getLocation().getBlockX();
-            int posZ = player.getLocation().getBlockZ();
-            float yaw = player.getLocation().getYaw();
-            float pitch = player.getLocation().getPitch();
-            World world = player.getWorld();
-            int newY = Utils.getNearestSurface(player.getLocation(), world);
+            Location loc = player.getLocation();
+            int posX = loc.getBlockX();
+            int posZ = loc.getBlockZ();
+            float yaw = loc.getYaw();
+            float pitch = loc.getPitch();
 
+            World world = player.getWorld();
+            int newY = Utils.getNearestSurface(loc, world);
             if (newY < 321) {
-                player.teleport(new Location(world, posX, newY, posZ, yaw, pitch));
+                player.teleport(new Location(world, loc.getX(), newY, loc.getZ(), yaw, pitch));
                 sender.sendMessage(ChatColor.AQUA + "Moved up into nearest surface" +
                         ChatColor.GOLD + " (" + posX + ", " + newY + ", " + posZ + ")");
             } else {
