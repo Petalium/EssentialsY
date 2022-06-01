@@ -8,15 +8,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandTpaRespond extends EssentialsCommand {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             boolean hasRequests = ActiveTpas.getActiveRecipients().contains(sender);
 
             player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
             if (player != null && !hasRequests && args.length > 0) {
                 sender.sendMessage(ChatColor.RED + "Player " + playerNameColor + player.getDisplayName() + ChatColor.RED + " has not sent a tpa request recently");
-                return true;
+                return;
             }
 
             if (hasRequests && player != null) {
@@ -34,18 +34,15 @@ public class CommandTpaRespond extends EssentialsCommand {
                         tpaSender.sendMessage(playerNameColor + tpaSender.getName() + ChatColor.RED + " Denied your tpa request");
                     }
                     default -> {
-                        return false;
+                        return;
                     }
                 }
 
-                return true;
+                return;
             }
 
             if (args.length <= 0)
                 sender.sendMessage(ChatColor.RED + "No recent requests found");
-            return true;
         }
-
-        return false;
     }
 }

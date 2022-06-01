@@ -9,13 +9,11 @@ import org.bukkit.entity.Player;
 
 public class CommandFeed extends EssentialsCommand {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
         if (player != null) {
             player.setFoodLevel(20);
             sender.sendMessage(ChatColor.AQUA + "Restored player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger");
         }
-
-        return true;
     }
 }

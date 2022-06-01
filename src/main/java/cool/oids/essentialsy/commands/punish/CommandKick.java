@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class CommandKick extends EssentialsCommand {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             player = Utils.extractPlayerArgWithWarnings(sender, args);
             if (player != null) {
@@ -23,7 +23,7 @@ public class CommandKick extends EssentialsCommand {
 
                 StringBuilder broadcastMessage = new StringBuilder();
                 broadcastMessage.append(playerNameColor + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
-                        ChatColor.GRAY + playerName);
+                    ChatColor.GRAY + playerName);
 
                 if (!reason.equals("none")) {
                     broadcastMessage.append(ChatColor.BLUE + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
@@ -38,11 +38,7 @@ public class CommandKick extends EssentialsCommand {
 
                 player.kickPlayer(playerKickMessage.toString());
                 Bukkit.broadcastMessage(broadcastMessage.toString());
-
-                return true;
             }
         }
-
-        return false;
     }
 }

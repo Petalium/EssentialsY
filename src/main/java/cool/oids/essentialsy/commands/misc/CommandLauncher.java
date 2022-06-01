@@ -10,7 +10,8 @@ import org.bukkit.entity.Player;
 import static cool.oids.essentialsy.items.ItemLauncher.launcher;
 
 public class CommandLauncher extends EssentialsCommand {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
             if (player != null) {
@@ -18,6 +19,5 @@ public class CommandLauncher extends EssentialsCommand {
                 sender.sendMessage(ChatColor.AQUA + "Gave player " + playerNameColor + player.getDisplayName() + ChatColor.GOLD + " launcher");
             }
         }
-        return true;
     }
 }

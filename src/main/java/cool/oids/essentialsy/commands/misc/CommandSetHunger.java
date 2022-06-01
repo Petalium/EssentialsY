@@ -7,10 +7,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSethunger extends EssentialsCommand {
+public class CommandSetHunger extends EssentialsCommand {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             int amnt = 0;
             if (args.length > 0) {
@@ -19,7 +18,7 @@ public class CommandSethunger extends EssentialsCommand {
                     amnt = Integer.parseInt(trimmed);
                 } catch (Exception e) {
                     sender.sendMessage(ChatColor.RED + "Argument was not an integer");
-                    return false;
+                    return;
                 }
 
                 if (args.length > 1) {
@@ -28,23 +27,22 @@ public class CommandSethunger extends EssentialsCommand {
 
                         if (player == null) {
                             sender.sendMessage(ChatColor.RED + "Player " + playerNameColor + trimmed + ChatColor.RED + " is not online");
-                            return true;
+                            return;
                         }
                     } else {
                         sender.sendMessage(ChatColor.RED + "Player does not exist");
-                        return true;
+                        return;
                     }
                 }
             }
 
             if (amnt > 20 || amnt < 0) {
                 sender.sendMessage(ChatColor.RED + "Hunger range: " + ChatColor.GOLD + "(0-20)");
-                return true;
+                return;
             }
+
             player.setFoodLevel(amnt);
             sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger to " + ChatColor.GOLD + amnt );
-            return true;
         }
-        return false;
     }
 }

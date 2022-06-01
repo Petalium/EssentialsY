@@ -25,7 +25,7 @@ public class TpaHandler {
 
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         final Runnable runnable = new Runnable() {
-            int timer = 60; //time (SECONDS) till TPA expires
+            int timer = 60; // time (SECONDS) till TPA expires
             public void run() {
                 timer--;
 

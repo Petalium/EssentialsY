@@ -5,8 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 public class CommandTpahere extends EssentialsCommand {
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-    return false;
-  }
+  @Override
+  public void run(CommandSender sender, Command command, String label, String[] args) {}
 }

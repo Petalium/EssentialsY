@@ -12,7 +12,9 @@ import org.bukkit.entity.Player;
 
 public class CommandBigTree extends EssentialsCommand {
     private static final int maxRetries = 5;
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
             World world = player.getWorld();
@@ -25,15 +27,12 @@ public class CommandBigTree extends EssentialsCommand {
                         continue;
                     }
 
-                    return true;
+                    return;
                 }
             }
 
             sender.sendMessage(ChatColor.RED + "Tree could not be summoned");
-            return true;
         }
-
-        return false;
     }
 
     boolean generateTree(World world, Block targetBlock, TreeType treeType) {

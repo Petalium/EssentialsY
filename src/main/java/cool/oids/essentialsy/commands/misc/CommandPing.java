@@ -10,7 +10,7 @@ public class CommandPing extends EssentialsCommand {
     static String usageString = "/ping [player]";
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
         if (player != null) {
             String prefix;
@@ -21,10 +21,9 @@ public class CommandPing extends EssentialsCommand {
             }
 
             sender.sendMessage(prefix + player.getPing());
-            return true;
+            return;
         }
 
         sender.sendMessage(usageString);
-        return true;
     }
 }

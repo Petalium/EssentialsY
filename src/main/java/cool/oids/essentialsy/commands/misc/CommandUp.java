@@ -10,7 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandUp extends EssentialsCommand {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             Location loc = player.getLocation();
             int posX = loc.getBlockX();
@@ -29,7 +30,7 @@ public class CommandUp extends EssentialsCommand {
                         numBlocks = Integer.parseUnsignedInt(args[0].trim());
                     } catch (Exception e) {
                         sender.sendMessage(ChatColor.RED + "Argument is not a positive integer");
-                        return false;
+                        return;
                     }
                 }
             }
@@ -39,13 +40,10 @@ public class CommandUp extends EssentialsCommand {
                 world.getBlockAt(posX, posY + (numBlocks - 1), posZ).setType(Material.STONE);
 
                 sender.sendMessage(ChatColor.AQUA + "Moved up " + numBlocks + " blocks" +
-                        ChatColor.GOLD + " (" + posX + ", " + (posY + numBlocks) + ", " + posZ + ")");
+                    ChatColor.GOLD + " (" + posX + ", " + (posY + numBlocks) + ", " + posZ + ")");
             } else {
                 sender.sendMessage(ChatColor.RED + "Position out of bounds " + ChatColor.GOLD + "(" + (posZ + numBlocks) + ")");
             }
-
-            return true;
         }
-        return false;
     }
 }

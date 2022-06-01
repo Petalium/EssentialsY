@@ -1,15 +1,15 @@
 package cool.oids.essentialsy.commands.misc;
 
 import cool.oids.essentialsy.Utils;
+import cool.oids.essentialsy.commands.EssentialsCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandHeal implements CommandExecutor {
+public class CommandHeal extends EssentialsCommand {
   @Override
-  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+  public void run(CommandSender sender, Command command, String label, String[] args) {
     Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
     if (player != null) {
       player.setHealth(20.0);
@@ -21,7 +21,5 @@ public class CommandHeal implements CommandExecutor {
               + ChatColor.AQUA
               + " health");
     }
-
-    return true;
   }
 }

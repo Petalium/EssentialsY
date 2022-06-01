@@ -10,7 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandTop extends EssentialsCommand {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             Location loc = player.getLocation();
             int posX = loc.getBlockX();
@@ -23,12 +24,10 @@ public class CommandTop extends EssentialsCommand {
             if (newY < 321) {
                 player.teleport(new Location(world, loc.getX(), newY, loc.getZ(), yaw, pitch));
                 sender.sendMessage(ChatColor.AQUA + "Moved up into nearest surface" +
-                        ChatColor.GOLD + " (" + posX + ", " + newY + ", " + posZ + ")");
+                    ChatColor.GOLD + " (" + posX + ", " + newY + ", " + posZ + ")");
             } else {
                 sender.sendMessage(ChatColor.RED + "No surface found above");
             }
-            return true;
         }
-        return false;
     }
 }

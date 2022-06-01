@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CommandRepair extends EssentialsCommand implements TabCompleter {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             PlayerInventory inventory = player.getInventory();
 
@@ -22,12 +22,13 @@ public class CommandRepair extends EssentialsCommand implements TabCompleter {
                 ItemStack currentItem = inventory.getItemInMainHand();
                 if (currentItem.getType().isBlock() || !itemDamagable(currentItem)) {
                     sender.sendMessage(ChatColor.RED + "Item cannot be repaired");
-                    return true;
+                    return;
                 }
 
                 repairItem(currentItem);
-                return true;
+                return;
             }
+
             if (args[0].equalsIgnoreCase("all")) {
                 ItemStack[] items = inventory.getContents();
                 for (final ItemStack item : items) {
@@ -37,13 +38,10 @@ public class CommandRepair extends EssentialsCommand implements TabCompleter {
 
                     repairItem(item);
                 }
-
-                return true;
             }
         }
-
-        return false;
     }
+
     @Override
     public ArrayList<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         ArrayList<String> options = new ArrayList<>();

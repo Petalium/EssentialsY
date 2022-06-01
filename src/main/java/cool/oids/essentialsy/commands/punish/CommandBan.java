@@ -11,8 +11,7 @@ import org.bukkit.entity.Player;
 
 public class CommandBan extends EssentialsCommand {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             String playerName = Utils.extractPlayerNameArg(sender, args);
             if (playerName != null) {
@@ -20,7 +19,7 @@ public class CommandBan extends EssentialsCommand {
 
                 if (banList.isBanned(playerName)) {
                     sender.sendMessage(ChatColor.RED + "Player " + playerNameColor + playerName + ChatColor.RED + " is already banned");
-                    return true;
+                    return;
                 }
 
                 String reason;
@@ -37,7 +36,7 @@ public class CommandBan extends EssentialsCommand {
 
                 if (!reason.equals("none")) {
                     broadcastMessage.append(ChatColor.RED + " for " +
-                            ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
+                        ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
                 }
 
                 if (player != null) {
@@ -52,11 +51,7 @@ public class CommandBan extends EssentialsCommand {
                 }
 
                 Bukkit.broadcastMessage(broadcastMessage.toString());
-
-                return true;
             }
         }
-
-        return false;
     }
 }

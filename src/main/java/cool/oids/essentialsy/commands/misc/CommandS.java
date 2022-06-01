@@ -8,17 +8,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandS extends EssentialsCommand {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    @Override
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             player = Utils.extractPlayerArgWithWarnings(sender, args);
             if (player != null) {
                 player.teleport(((Player) sender).getLocation());
                 sender.sendMessage(ChatColor.AQUA + "Teleported " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " to you");
                 player.sendMessage(playerNameColor + sender.getName()+ ChatColor.AQUA + " teleported you to them");
-                return true;
             }
         }
-
-        return false;
     }
 }

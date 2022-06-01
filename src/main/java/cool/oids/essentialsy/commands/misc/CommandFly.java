@@ -12,16 +12,14 @@ public class CommandFly extends EssentialsCommand {
     private static final String disabledString = ChatColor.AQUA + "Fly " + ChatColor.GOLD + "Disabled" + ChatColor.AQUA + " for " + playerNameColor;
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void run(CommandSender sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
         if (player != null) {
             player.setAllowFlight(!player.getAllowFlight());
             sender.sendMessage(
                 player.getAllowFlight()
-                ? enabledString + player.getDisplayName()
-                : disabledString + player.getDisplayName());
+                    ? enabledString + player.getDisplayName()
+                    : disabledString + player.getDisplayName());
         }
-
-        return true;
     }
 }
