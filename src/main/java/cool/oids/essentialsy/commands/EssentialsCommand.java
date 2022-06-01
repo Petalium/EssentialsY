@@ -1,10 +1,9 @@
 package cool.oids.essentialsy.commands;
 
+import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
-import java.util.ArrayList;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class EssentialsCommand implements IEssentialsCommand {
@@ -18,5 +17,9 @@ public abstract class EssentialsCommand implements IEssentialsCommand {
       @NotNull String label,
       @NotNull String[] args) {
     return subCommands;
+  }
+
+  public void ranFromConsoleError(CommandSender sender) {
+    sender.sendMessage("" + ChatColor.RED + "This command cannot be run in console");
   }
 }

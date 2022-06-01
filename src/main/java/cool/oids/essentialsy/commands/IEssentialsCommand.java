@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public interface IEssentialsCommand extends CommandExecutor, TabCompleter {
@@ -17,5 +18,9 @@ public interface IEssentialsCommand extends CommandExecutor, TabCompleter {
     return true;
   }
 
-  void run(CommandSender sender, Command command, String label, String[] args);
+  default void run(CommandSender sender, Command command, String label, String[] args) {}
+
+  default void run(Player player, Command command, String label, String[] args) {
+    run((CommandSender) player, command, label, args);
+  }
 }

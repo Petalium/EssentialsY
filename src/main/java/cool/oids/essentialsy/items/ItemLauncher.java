@@ -1,6 +1,8 @@
 package cool.oids.essentialsy.items;
 
 import cool.oids.essentialsy.Utils;
+import java.util.Arrays;
+import java.util.Objects;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -12,9 +14,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Arrays;
-import java.util.Objects;
 
 
 public class ItemLauncher implements Listener {

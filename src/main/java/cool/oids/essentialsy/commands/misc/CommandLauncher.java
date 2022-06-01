@@ -12,12 +12,20 @@ public class CommandLauncher extends EssentialsCommand {
 
     @Override
     public void run(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player player) {
-            player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
-            if (player != null) {
-                player.getInventory().addItem(ItemLauncher.launcher);
-                sender.sendMessage(ChatColor.AQUA + "Gave player " + playerNameColor + player.getDisplayName() + ChatColor.GOLD + " launcher");
-            }
+        Player receiver;
+        if (args.length > 0) {
+            receiver = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+        } else if (sender instanceof Player player) {
+            receiver = player;
+        } else {
+            ranFromConsoleError(sender);
+            return;
+        }
+
+        if (receiver != null) {
+            receiver.getInventory().addItem(ItemLauncher.launcher);
+            sender.sendMessage(ChatColor.AQUA + "Gave player " + playerNameColor + receiver.getDisplayName() + ChatColor.GOLD + " launcher");
         }
     }
+
 }

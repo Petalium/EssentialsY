@@ -11,50 +11,61 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandKick extends EssentialsCommand {
-    @Override
-    public void run(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player player) {
-            player = Utils.extractPlayerArgWithWarnings(sender, args);
-            if (player != null) {
-                String playerName = player.getName();
-                String reason;
-                if (args.length > 1)
-                    reason = Utils.getMessage(args, 1);
-                else
-                    reason = "none";
+  @Override
+  public void run(CommandSender sender, Command command, String label, String[] args) {
+    Player player = Utils.extractPlayerArgWithWarnings(sender, args);
+    if (player != null) {
+      String playerName = player.getName();
+      String reason;
+      if (args.length > 1) reason = Utils.getMessage(args, 1);
+      else reason = "none";
 
-                StringBuilder broadcastMessage = new StringBuilder();
-                broadcastMessage.append(playerNameColor + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
-                    ChatColor.GRAY + playerName);
+      StringBuilder broadcastMessage = new StringBuilder();
+      broadcastMessage.append(
+          playerNameColor
+              + ((Player) sender).getDisplayName()
+              + ChatColor.BLUE
+              + " kicked "
+              + ChatColor.GRAY
+              + playerName);
 
-                if (!reason.equals("none")) {
-                    broadcastMessage.append(ChatColor.BLUE + " for " + ChatColor.LIGHT_PURPLE + "\"" + Utils.getMessage(args,1) + "\"");
-                }
+      if (!reason.equals("none")) {
+        broadcastMessage.append(
+            ChatColor.BLUE
+                + " for "
+                + ChatColor.LIGHT_PURPLE
+                + "\""
+                + Utils.getMessage(args, 1)
+                + "\"");
+      }
 
-                StringBuilder playerKickMessage = new StringBuilder();
-                playerKickMessage.append(ChatColor.BLUE + "Kicked by " + playerNameColor + ((Player) sender).getDisplayName() + ChatColor.BLUE);
+      StringBuilder playerKickMessage = new StringBuilder();
+      playerKickMessage.append(
+          ChatColor.BLUE
+              + "Kicked by "
+              + playerNameColor
+              + ((Player) sender).getDisplayName()
+              + ChatColor.BLUE);
 
-                if (!reason.equals("none")) {
-                    playerKickMessage.append(" for " + ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
-                }
+      if (!reason.equals("none")) {
+        playerKickMessage.append(" for " + ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");
+      }
 
-                player.kickPlayer(playerKickMessage.toString());
-                Bukkit.broadcastMessage(broadcastMessage.toString());
-            }
-        }
+      player.kickPlayer(playerKickMessage.toString());
+      Bukkit.broadcastMessage(broadcastMessage.toString());
+    }
+  }
+
+  @Override
+  public ArrayList<String> onTabComplete(
+      @NotNull CommandSender sender,
+      @NotNull Command command,
+      @NotNull String label,
+      @NotNull String[] args) {
+    if (args.length == 1) {
+      return Utils.getOnlinePlayerNames();
     }
 
-    @Override
-    public ArrayList<String> onTabComplete(
-        @NotNull CommandSender sender,
-        @NotNull Command command,
-        @NotNull String label,
-        @NotNull String[] args) {
-        if (args.length == 1) {
-            return Utils.getOnlinePlayerNames();
-        }
-
-        return null;
-    }
-
+    return null;
+  }
 }

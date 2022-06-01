@@ -1,12 +1,12 @@
 package cool.oids.essentialsy.commands.misc;
 
 import cool.oids.essentialsy.Utils;
-import cool.oids.essentialsy.commands.EssentialsCommand;
+import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
+import java.util.Arrays;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,9 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.Arrays;
-
-public class CommandInvsee extends EssentialsCommand implements Listener {
+public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
     private final ItemStack equip;
     private final ItemStack contents;
     private final ItemStack clear;
@@ -54,32 +52,30 @@ public class CommandInvsee extends EssentialsCommand implements Listener {
         plrHead = new ItemStack(Material.PLAYER_HEAD);
     }
 
-    public void run(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player player) {
-            player = Utils.extractPlayerArgWithWarnings(sender, args);
-            if (player != null) {
-                CommandInvsee.player = player;
+    public void run(Player sender, Command command, String label, String[] args) {
+        Player player = Utils.extractPlayerArgWithWarnings(sender, args);
+        if (player != null) {
+            CommandInvsee.player = player;
 
-                ItemMeta meta = plrHead.getItemMeta();
-                assert meta != null;
-                meta.setDisplayName(ChatColor.AQUA + "Player " + playerNameColor + player.getDisplayName());
-                lore[0] = ChatColor.GRAY + "UUID: " + ChatColor.GOLD + player.getUniqueId();
-                meta.setLore(Arrays.asList(lore));
-                plrHead.setItemMeta(meta);
+            ItemMeta meta = plrHead.getItemMeta();
+            assert meta != null;
+            meta.setDisplayName(ChatColor.AQUA + "Player " + playerNameColor + player.getDisplayName());
+            lore[0] = ChatColor.GRAY + "UUID: " + ChatColor.GOLD + player.getUniqueId();
+            meta.setLore(Arrays.asList(lore));
+            plrHead.setItemMeta(meta);
 
-                SkullMeta skullMeta = (SkullMeta) plrHead.getItemMeta();
-                skullMeta.setOwningPlayer(player);
-                plrHead.setItemMeta(skullMeta);
+            SkullMeta skullMeta = (SkullMeta) plrHead.getItemMeta();
+            skullMeta.setOwningPlayer(player);
+            plrHead.setItemMeta(skullMeta);
 
-                Inventory select = Bukkit.createInventory(null,9, "Inventory selection");
-                select.setItem(0, plrHead);
-                select.setItem(3, equip);
-                select.setItem(5, contents);
-                select.setItem(8, clear);
+            Inventory select = Bukkit.createInventory(null,9, "Inventory selection");
+            select.setItem(0, plrHead);
+            select.setItem(3, equip);
+            select.setItem(5, contents);
+            select.setItem(8, clear);
 
-                ((Player) sender).closeInventory();
-                ((Player) sender).openInventory(select);
-            }
+            sender.closeInventory();
+            sender.openInventory(select);
         }
     }
 
@@ -93,7 +89,7 @@ public class CommandInvsee extends EssentialsCommand implements Listener {
                 case 3 -> {
                     Inventory inv = Bukkit.createInventory(player, 9, "Equipped");
                     inv.setContents(player.getInventory().getArmorContents());
-                    inv.setItem(4,player.getInventory().getItemInOffHand());
+                    inv.setItem(4, player.getInventory().getItemInOffHand());
                     sender.closeInventory();
                     sender.openInventory(inv);
                 }

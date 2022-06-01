@@ -21,7 +21,13 @@ public class CommandUnban extends EssentialsCommand {
         banList.pardon(playerName);
         sender.sendMessage(ChatColor.AQUA + "Unbanned " + playerNameColor + playerName);
       } else {
-        sender.sendMessage(ChatColor.RED + "Player " + playerNameColor + playerName + ChatColor.RED + " is not banned");
+        sender.sendMessage(
+            ChatColor.RED
+                + "Player "
+                + playerNameColor
+                + playerName
+                + ChatColor.RED
+                + " is not banned");
       }
     }
   }
@@ -38,5 +44,4 @@ public class CommandUnban extends EssentialsCommand {
 
     return null;
   }
-
 }

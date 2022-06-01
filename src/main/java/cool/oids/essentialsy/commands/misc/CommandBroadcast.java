@@ -9,14 +9,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandBroadcast extends EssentialsCommand {
-    public void run(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            if (args.length > 0) {
-                Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.AQUA + "Broadcast" + ChatColor.GRAY + "] "
-                    + ChatColor.LIGHT_PURPLE + Utils.getMessage(args, 0));
-            } else {
-                sender.sendMessage(ChatColor.RED + "No message inputted");
-            }
-        }
+  public void run(CommandSender sender, Command command, String label, String[] args) {
+    if (sender instanceof Player) {
+      if (args.length > 0) {
+        Bukkit.broadcastMessage(
+            ChatColor.GRAY
+                + "["
+                + ChatColor.AQUA
+                + "Broadcast"
+                + ChatColor.GRAY
+                + "] "
+                + ChatColor.LIGHT_PURPLE
+                + Utils.getMessage(args, 0));
+      } else {
+        sender.sendMessage(ChatColor.RED + "No message inputted");
+      }
     }
+  }
 }

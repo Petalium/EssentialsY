@@ -1,20 +1,18 @@
 package cool.oids.essentialsy;
 
+import static org.bukkit.Bukkit.getPlayerExact;
+
 import com.google.common.collect.Lists;
-import cool.oids.essentialsy.commands.tpa.ActiveTpas;
 import java.util.ArrayList;
-import java.util.List;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.bukkit.Bukkit.getPlayerExact;
 
 public class Utils {
     public static String getMessage(String[] args, int index) {
@@ -150,4 +148,5 @@ public class Utils {
 
         return players;
     }
+
 }
