@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -23,17 +23,17 @@ public class ItemLauncher implements Listener {
     public ItemLauncher() {
         launcher = new ItemStack(Material.CARROT_ON_A_STICK, 1);
         ItemMeta meta = launcher.getItemMeta();
-        ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.GRAY + "Right click to launch forward");
-        lore.add(ChatColor.GRAY + "Left click to launch backward");
+        String[] lore = {
+                ChatColor.GRAY + "Right click to launch forward",
+                ChatColor.GRAY + "Left click to launch backward"
+        };
 
         assert meta != null;
-        meta.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Launcher");
-        meta.setLore(lore);
+        meta.setDisplayName("" + ChatColor.GOLD + ChatColor.BOLD + "Launcher");
+        meta.setLore(Arrays.asList(lore));
         meta.addEnchant(Enchantment.LUCK, 1,false);
         meta.setUnbreakable(true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE);
         launcher.setItemMeta(meta);
     }
 
