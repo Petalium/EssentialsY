@@ -57,6 +57,12 @@ commands:
   ping:
     description: Gets the ping of a player
     usage: /ping [player]
+  kittycannon:
+    description: Shoots cat out of player
+    usage: /kittycannon
+  suicide:
+    description: Kills self
+    usage: /suicide
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}

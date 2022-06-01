@@ -1,5 +1,4 @@
 package cool.oids.essentialsy;
-import cool.oids.essentialsy.commands.gamemodes.*;
 import cool.oids.essentialsy.commands.misc.*;
 import cool.oids.essentialsy.commands.punish.*;
 import cool.oids.essentialsy.commands.tpa.*;
@@ -27,7 +26,9 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("workbench").setExecutor(new CommandWorkBench());
         this.getCommand("bigtree").setExecutor(new CommandBigTree());
         this.getCommand("launcher").setExecutor(new CommandLauncher());
+        this.getCommand("kittycannon").setExecutor(new CommandKittyCannon());
         this.getCommand("ping").setExecutor(new CommandPing());
+        this.getCommand("suicide").setExecutor(new CommandSuicide());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());

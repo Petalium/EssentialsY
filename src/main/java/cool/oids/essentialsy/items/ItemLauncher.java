@@ -1,5 +1,6 @@
 package cool.oids.essentialsy.items;
 
+import cool.oids.essentialsy.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -11,7 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -38,7 +38,7 @@ public class ItemLauncher implements Listener {
     }
 
     @EventHandler
-    public static void onClick(PlayerInteractEvent e) {
+    public void onClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         String launchType = "normal";
 
@@ -50,21 +50,13 @@ public class ItemLauncher implements Listener {
         }
 
         if (e.getItem() != null) {
-            if (Objects.equals(e.getItem().getItemMeta(), ItemLauncher.launcher.getItemMeta())) {
+            if (Objects.equals(e.getItem().getItemMeta(), launcher.getItemMeta())) {
                 switch(launchType) {
-                    case "normal" -> launch(player,1);
-                    case "inverse" -> launch(player,-1);
+                    case "normal" -> Utils.launch(player,1,10);
+                    case "inverse" -> Utils.launch(player,-1,10);
                 }
+                player.getWorld().createExplosion(player.getLocation(),0);
             }
         }
-    }
-
-    public static void launch(Player player, int mult) {
-        Vector v = player.getLocation().getDirection();
-        v.setX(v.getX() * 10);
-        v.setY(v.getY() * 10);
-        v.setZ(v.getZ() * 10);
-        player.setVelocity(v.multiply(mult));
-        player.getWorld().createExplosion(player.getLocation(), 0);
     }
 }

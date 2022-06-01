@@ -1,9 +1,16 @@
 package cool.oids.essentialsy;
 
+import cool.oids.essentialsy.commands.tpa.ActiveTpas;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.bukkit.Bukkit.getPlayerExact;
 
 public class Utils {
@@ -122,5 +129,13 @@ public class Utils {
 
     public static int randomNum(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
+    }
+
+    public static void launch(Entity entity, int mult, int m) {
+        Vector v = entity.getLocation().getDirection();
+        v.setX(v.getX() * m);
+        v.setY(v.getY() * m);
+        v.setZ(v.getZ() * m);
+        entity.setVelocity(v.multiply(mult));
     }
 }

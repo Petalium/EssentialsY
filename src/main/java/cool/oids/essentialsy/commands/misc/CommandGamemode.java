@@ -1,4 +1,4 @@
-package cool.oids.essentialsy.commands.gamemodes;
+package cool.oids.essentialsy.commands.misc;
 
 import cool.oids.essentialsy.Utils;
 import org.bukkit.ChatColor;
