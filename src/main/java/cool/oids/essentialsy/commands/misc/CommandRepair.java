@@ -13,6 +13,12 @@ import org.bukkit.inventory.meta.Damageable;
 import java.util.ArrayList;
 
 public class CommandRepair extends EssentialsCommand implements TabCompleter {
+    public CommandRepair() {
+        this.subCommands = new ArrayList<>();
+        this.subCommands.add("hand");
+        this.subCommands.add("all");
+    }
+
     @Override
     public void run(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
@@ -42,16 +48,6 @@ public class CommandRepair extends EssentialsCommand implements TabCompleter {
         }
     }
 
-    @Override
-    public ArrayList<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        ArrayList<String> options = new ArrayList<>();
-        if (args.length == 1) {
-            options.add("hand");
-            options.add("all");
-        }
-
-        return options;
-    }
     void repairItem(ItemStack item) {
         if (item.getItemMeta() instanceof Damageable damageable) {
             damageable.setDamage(0);
