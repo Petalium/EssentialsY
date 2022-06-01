@@ -31,6 +31,8 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("suicide").setExecutor(new CommandSuicide());
         this.getCommand("broadcast").setExecutor(new CommandBroadcast());
         this.getCommand("invsee").setExecutor(new CommandInvsee());
+        this.getCommand("nuke").setExecutor(new CommandNuke());
+        this.getCommand("airstrike").setExecutor(new CommandAirstrike());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
