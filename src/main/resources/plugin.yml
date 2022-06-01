@@ -1,10 +1,10 @@
 name: EssentialsY
-version: '0.1.1'
+version: "0.1.1"
 main: cool.oids.essentialsy.EssentialsY
 api-version: 1.18
 prefix: EssentialsY >
 load: STARTUP
-authors: [ oids ]
+authors: [oids]
 description: awesome
 commands:
   fly:
@@ -54,6 +54,9 @@ commands:
   launcher:
     description: Gives player launching item
     usage: /launch {Player}
+  ping:
+    description: Gets the ping of a player
+    usage: /ping [player]
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}

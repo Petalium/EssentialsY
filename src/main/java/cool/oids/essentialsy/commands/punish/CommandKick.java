@@ -1,13 +1,14 @@
 package cool.oids.essentialsy.commands.punish;
+
 import cool.oids.essentialsy.Utils;
+import cool.oids.essentialsy.commands.EssentialsCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandKick implements CommandExecutor {
+public class CommandKick extends EssentialsCommand {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
@@ -21,7 +22,7 @@ public class CommandKick implements CommandExecutor {
                     reason = "none";
 
                 StringBuilder broadcastMessage = new StringBuilder();
-                broadcastMessage.append(ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
+                broadcastMessage.append(playerNameColor + ((Player) sender).getDisplayName() + ChatColor.BLUE + " kicked " +
                         ChatColor.GRAY + playerName);
 
                 if (!reason.equals("none")) {
@@ -29,7 +30,7 @@ public class CommandKick implements CommandExecutor {
                 }
 
                 StringBuilder playerKickMessage = new StringBuilder();
-                playerKickMessage.append(ChatColor.BLUE + "Kicked by " + ChatColor.YELLOW + ((Player) sender).getDisplayName() + ChatColor.BLUE);
+                playerKickMessage.append(ChatColor.BLUE + "Kicked by " + playerNameColor + ((Player) sender).getDisplayName() + ChatColor.BLUE);
 
                 if (!reason.equals("none")) {
                     playerKickMessage.append(" for " + ChatColor.LIGHT_PURPLE + "\"" + reason + "\"");

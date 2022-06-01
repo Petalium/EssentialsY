@@ -1,13 +1,13 @@
 package cool.oids.essentialsy.commands.misc;
+
+import cool.oids.essentialsy.commands.EssentialsCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static org.bukkit.Bukkit.getPlayerExact;
-
-public class CommandSethunger implements CommandExecutor {
+public class CommandSethunger extends EssentialsCommand {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -24,10 +24,10 @@ public class CommandSethunger implements CommandExecutor {
 
                 if (args.length > 1) {
                     if (args[1].trim().length() > 2) {
-                        player = getPlayerExact(args[1].trim());
+                        player = Bukkit.getPlayerExact(args[1].trim());
 
                         if (player == null) {
-                            sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
+                            sender.sendMessage(ChatColor.RED + "Player " + playerNameColor + trimmed + ChatColor.RED + " is not online");
                             return true;
                         }
                     } else {
@@ -42,7 +42,7 @@ public class CommandSethunger implements CommandExecutor {
                 return true;
             }
             player.setFoodLevel(amnt);
-            sender.sendMessage(ChatColor.AQUA + "Set player " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " hunger to " + ChatColor.GOLD + amnt );
+            sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger to " + ChatColor.GOLD + amnt );
             return true;
         }
         return false;

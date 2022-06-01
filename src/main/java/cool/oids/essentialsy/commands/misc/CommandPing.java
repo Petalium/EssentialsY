@@ -2,20 +2,29 @@ package cool.oids.essentialsy.commands.misc;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.EssentialsCommand;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandFeed extends EssentialsCommand {
+public class CommandPing extends EssentialsCommand {
+    static String usageString = "/ping [player]";
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
         if (player != null) {
-            player.setFoodLevel(20);
-            sender.sendMessage(ChatColor.AQUA + "Restored player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger");
+            String prefix;
+            if (args.length == 0) {
+                prefix = "Ping: ";
+            } else {
+                prefix = playerNameColor + player.getDisplayName() + "'s " + "ping: ";
+            }
+
+            sender.sendMessage(prefix + player.getPing());
+            return true;
         }
 
+        sender.sendMessage(usageString);
         return true;
     }
 }

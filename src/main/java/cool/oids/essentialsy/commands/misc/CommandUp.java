@@ -1,13 +1,15 @@
 package cool.oids.essentialsy.commands.misc;
 
-import org.bukkit.*;
+import cool.oids.essentialsy.commands.EssentialsCommand;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandUp implements CommandExecutor {
-
+public class CommandUp extends EssentialsCommand {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             Location loc = player.getLocation();

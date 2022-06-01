@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EssentialsY extends JavaPlugin {
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onEnable() {
         this.getCommand("fly").setExecutor(new CommandFly());
@@ -26,6 +27,7 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("workbench").setExecutor(new CommandWorkBench());
         this.getCommand("bigtree").setExecutor(new CommandBigTree());
         this.getCommand("launcher").setExecutor(new CommandLauncher());
+        this.getCommand("ping").setExecutor(new CommandPing());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
