@@ -21,9 +21,9 @@ public class CommandNuke extends EssentialsCommand {
                 Location loc = player.getLocation();
                 sender.sendMessage(ChatColor.AQUA + "Nuking " + playerNameColor + player.getDisplayName());
 
-                for (int r = -10; r <= 10; r += 3) {
-                    for (int c = -10; c <= 10; c += 3) {
-                        world.spawn(new Location(world, loc.getBlockX() + r, world.getHighestBlockYAt(loc) + 64, loc.getBlockZ() + c), TNTPrimed.class);
+                for (int row = -10; row <= 10; row += 3) {
+                    for (int col = -10; col <= 10; col += 3) {
+                        world.spawn(new Location(world, loc.getBlockX() + row, world.getHighestBlockYAt(loc) + 64, loc.getBlockZ() + col), TNTPrimed.class);
                     }
                 }
             }

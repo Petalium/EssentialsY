@@ -9,6 +9,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import org.jetbrains.annotations.NotNull;
+
 public class CommandBan extends EssentialsCommand {
     @Override
     public void run(CommandSender sender, Command command, String label, String[] args) {
@@ -53,5 +56,18 @@ public class CommandBan extends EssentialsCommand {
                 Bukkit.broadcastMessage(broadcastMessage.toString());
             }
         }
+    }
+
+    @Override
+    public ArrayList<String> onTabComplete(
+        @NotNull CommandSender sender,
+        @NotNull Command command,
+        @NotNull String label,
+        @NotNull String[] args) {
+        if (args.length == 1) {
+            return Utils.getOnlinePlayerNames();
+        }
+
+        return null;
     }
 }

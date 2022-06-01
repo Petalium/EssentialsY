@@ -1,6 +1,9 @@
 package cool.oids.essentialsy;
 
+import com.google.common.collect.Lists;
 import cool.oids.essentialsy.commands.tpa.ActiveTpas;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -137,5 +140,14 @@ public class Utils {
         v.setY(v.getY() * m);
         v.setZ(v.getZ() * m);
         entity.setVelocity(v.multiply(mult));
+    }
+
+    public static ArrayList<String> getOnlinePlayerNames() {
+        final ArrayList<String> players = Lists.newArrayList();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            players.add(player.getName());
+        }
+
+        return players;
     }
 }

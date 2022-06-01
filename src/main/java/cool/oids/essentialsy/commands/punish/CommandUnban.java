@@ -2,11 +2,13 @@ package cool.oids.essentialsy.commands.punish;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.EssentialsCommand;
+import java.util.ArrayList;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandUnban extends EssentialsCommand {
   @Override
@@ -23,4 +25,18 @@ public class CommandUnban extends EssentialsCommand {
       }
     }
   }
+
+  @Override
+  public ArrayList<String> onTabComplete(
+      @NotNull CommandSender sender,
+      @NotNull Command command,
+      @NotNull String label,
+      @NotNull String[] args) {
+    if (args.length == 1) {
+      return Utils.getOnlinePlayerNames();
+    }
+
+    return null;
+  }
+
 }
