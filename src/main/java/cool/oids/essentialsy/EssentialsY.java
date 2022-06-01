@@ -29,6 +29,8 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("kittycannon").setExecutor(new CommandKittyCannon());
         this.getCommand("ping").setExecutor(new CommandPing());
         this.getCommand("suicide").setExecutor(new CommandSuicide());
+        this.getCommand("broadcast").setExecutor(new CommandBroadcast());
+        this.getCommand("invsee").setExecutor(new CommandInvsee());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
@@ -46,6 +48,7 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("kick").setExecutor(new CommandKick());
 
         getServer().getPluginManager().registerEvents(new ItemLauncher(), this);
+        getServer().getPluginManager().registerEvents(new CommandInvsee(), this);
     }
 
     @Override

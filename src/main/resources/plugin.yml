@@ -4,7 +4,7 @@ main: cool.oids.essentialsy.EssentialsY
 api-version: 1.18
 prefix: EssentialsY >
 load: STARTUP
-authors: [oids]
+authors: [oids, kde4]
 description: awesome
 commands:
   fly:
@@ -48,6 +48,7 @@ commands:
   workbench:
     description: Opens workbench
     usage: /workbench
+    aliases: [craftingtable, wb, craftingbench]
   bigtree:
     description: Spawns a random big tree where the player is facing
     usage: /bigtree
@@ -63,6 +64,12 @@ commands:
   suicide:
     description: Kills self
     usage: /suicide
+  broadcast:
+    description: Broadcasts message to everyone
+    usage: /broadcast {Message}
+  invsee:
+    description: Allows player to see and modify another users inventory
+    usage: /invsee {Player}
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}
