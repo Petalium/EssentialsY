@@ -14,6 +14,7 @@ public abstract class PlayerExclusiveCommand extends EssentialsCommand {
       String[] args) {
     if (sender instanceof Player player) {
       run(player, command, label, args);
+      return true;
     }
 
     ranFromConsoleError(sender);
