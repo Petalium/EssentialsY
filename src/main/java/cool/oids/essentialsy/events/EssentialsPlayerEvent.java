@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.Objects;
 
-import static cool.oids.essentialsy.commands.misc.CommandLauncher.launcher;
+import static cool.oids.essentialsy.commands.fun.CommandLauncher.launcher;
 
 
 public class EssentialsPlayerEvent implements Listener {

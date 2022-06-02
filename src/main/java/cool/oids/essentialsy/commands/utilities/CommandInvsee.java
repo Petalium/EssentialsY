@@ -1,4 +1,4 @@
-package cool.oids.essentialsy.commands.misc;
+package cool.oids.essentialsy.commands.utilities;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
