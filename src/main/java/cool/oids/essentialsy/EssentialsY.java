@@ -32,7 +32,8 @@ import cool.oids.essentialsy.commands.tpa.CommandTpa;
 import cool.oids.essentialsy.commands.tpa.CommandTpaCancel;
 import cool.oids.essentialsy.commands.tpa.CommandTpaRespond;
 import cool.oids.essentialsy.commands.tpa.CommandTpahere;
-import cool.oids.essentialsy.items.ItemLauncher;
+import cool.oids.essentialsy.events.EssentialsInventoryEvent;
+import cool.oids.essentialsy.events.EssentialsPlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -81,8 +82,8 @@ public final class EssentialsY extends JavaPlugin {
     this.getCommand("unban").setExecutor(new CommandUnban());
     this.getCommand("kick").setExecutor(new CommandKick());
 
-    getServer().getPluginManager().registerEvents(new ItemLauncher(), this);
-    getServer().getPluginManager().registerEvents(new CommandInvsee(), this);
+    getServer().getPluginManager().registerEvents(new EssentialsPlayerEvent(), this);
+    getServer().getPluginManager().registerEvents(new EssentialsInventoryEvent(), this);
   }
 
   @Override

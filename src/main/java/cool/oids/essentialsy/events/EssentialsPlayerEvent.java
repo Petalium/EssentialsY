@@ -1,40 +1,18 @@
-package cool.oids.essentialsy.items;
+package cool.oids.essentialsy.events;
 
 import cool.oids.essentialsy.Utils;
-import java.util.Arrays;
-import java.util.Objects;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Objects;
+
+import static cool.oids.essentialsy.commands.misc.CommandLauncher.launcher;
 
 
-public class ItemLauncher implements Listener {
-    public static ItemStack launcher;
-
-    public ItemLauncher() {
-        launcher = new ItemStack(Material.CARROT_ON_A_STICK, 1);
-        ItemMeta meta = launcher.getItemMeta();
-        String[] lore = {
-                ChatColor.GRAY + "Right click to launch forward",
-                ChatColor.GRAY + "Left click to launch backward"
-        };
-
-        assert meta != null;
-        meta.setDisplayName("" + ChatColor.GOLD + ChatColor.BOLD + "Launcher");
-        meta.setLore(Arrays.asList(lore));
-        meta.addEnchant(Enchantment.LUCK, 1,false);
-        meta.setUnbreakable(true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE);
-        launcher.setItemMeta(meta);
-    }
+public class EssentialsPlayerEvent implements Listener {
 
     @EventHandler
     public void onClick(PlayerInteractEvent e) {

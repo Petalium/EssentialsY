@@ -7,6 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,8 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
-
-    private static Player player;
     private final ItemStack equip;
     private final ItemStack contents;
     private final ItemStack clear;
@@ -34,7 +34,7 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
         meta.setLore(Arrays.asList(lore));
         equip.setItemMeta(meta);
 
-        contents = new ItemStack(Material.BUCKET);
+        contents = new ItemStack(Material.CHEST);
         meta = contents.getItemMeta();
         assert meta != null;
         meta.setDisplayName(ChatColor.GOLD +"Contents");
@@ -56,7 +56,6 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
     public void run(Player sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgWithWarnings(sender, args);
         if (player != null) {
-            CommandInvsee.player = player;
 
             ItemMeta meta = plrHead.getItemMeta();
             assert meta != null;
@@ -69,7 +68,7 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
             skullMeta.setOwningPlayer(player);
             plrHead.setItemMeta(skullMeta);
 
-            Inventory select = Bukkit.createInventory(null,9, "Inventory selection");
+            Inventory select = Bukkit.createInventory(player,9, "Inventory selection");
             select.setItem(0, plrHead);
             select.setItem(3, equip);
             select.setItem(5, contents);
@@ -79,33 +78,4 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
             sender.openInventory(select);
         }
     }
-
-    @EventHandler
-    public void onClick(InventoryClickEvent e) {
-        if (e.getView().getTitle().equals("Inventory selection") && e.getCurrentItem() != null) {
-            e.setCancelled(true);
-            Player sender = (Player) e.getWhoClicked();
-
-            switch(e.getRawSlot()) {
-                case 3 -> {
-                    Inventory inv = Bukkit.createInventory(player, 9, "Equipped");
-                    inv.setContents(player.getInventory().getArmorContents());
-                    inv.setItem(4, player.getInventory().getItemInOffHand());
-                    sender.closeInventory();
-                    sender.openInventory(inv);
-                }
-                case 5 -> {
-                    sender.closeInventory();
-                    sender.openInventory(player.getInventory());
-                }
-                case 8 -> {
-                    player.getInventory().clear();
-                    sender.sendMessage(ChatColor.AQUA + "Cleared " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " inventory");
-                    sender.closeInventory();
-                }
-                default -> {}
-            }
-        }
-    }
-
 }
