@@ -8,7 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
 public class CommandGamemode extends PlayerExclusiveCommand {
-    public boolean onCommand(Player sender, Command command, String label, String[] args) {
+    public void run(Player sender, Command command, String label, String[] args) {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
 
         if (player != null) {
@@ -31,12 +31,8 @@ public class CommandGamemode extends PlayerExclusiveCommand {
                     player.setGameMode(GameMode.SPECTATOR);
                     sender.sendMessage(msg + "Spectator");
                 }
-                default -> {
-                    return false;
-                }
+                default -> {}
             }
         }
-
-        return true;
     }
 }

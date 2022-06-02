@@ -76,9 +76,13 @@ commands:
   airstrike:
     description: Sends a targeted airstrike to a player
     usage: /airstrike [Player]
+  tpr:
+    description: Teleports player to random point in a specified radius
+    usage: /tpr [Range]
   disposal:
     description: Opens an inventory to dispose of items
     usage: /disposal
+
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}
@@ -94,6 +98,7 @@ commands:
   tpacancel:
     description: Cancels a teleport request
     usage: /tpacancel [Player]
+
   kick:
     description: Kicks player
     usage: /kick {Player} [Reason]
@@ -103,6 +108,7 @@ commands:
   unban:
     description: Unbans player
     usage: /unban {Player}
+
   gma:
     description: Sets gamemode to adventure
     usage: /gma [Player]

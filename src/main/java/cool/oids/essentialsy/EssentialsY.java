@@ -22,6 +22,7 @@ import cool.oids.essentialsy.commands.misc.CommandSetHunger;
 import cool.oids.essentialsy.commands.misc.CommandSethealth;
 import cool.oids.essentialsy.commands.misc.CommandSuicide;
 import cool.oids.essentialsy.commands.misc.CommandTop;
+import cool.oids.essentialsy.commands.misc.CommandTpr;
 import cool.oids.essentialsy.commands.misc.CommandUp;
 import cool.oids.essentialsy.commands.misc.CommandWorkBench;
 import cool.oids.essentialsy.commands.punish.CommandBan;
@@ -63,6 +64,7 @@ public final class EssentialsY extends JavaPlugin {
     this.getCommand("nuke").setExecutor(new CommandNuke());
     this.getCommand("airstrike").setExecutor(new CommandAirstrike());
     this.getCommand("disposal").setExecutor(new CommandDisposal());
+    this.getCommand("tpr").setExecutor(new CommandTpr());
 
     this.getCommand("tpa").setExecutor(new CommandTpa());
     this.getCommand("tpahere").setExecutor(new CommandTpahere());
@@ -87,4 +89,5 @@ public final class EssentialsY extends JavaPlugin {
   public void onDisable() {
     Bukkit.getLogger().info("Disabling");
   }
+
 }
