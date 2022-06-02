@@ -42,7 +42,7 @@ public class CommandSetHunger extends EssentialsCommand {
             }
 
             player.setFoodLevel(amnt);
-            sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger to " + ChatColor.GOLD + amnt );
+            sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " hunger to " + ChatColor.GOLD + amnt);
         }
     }
 }

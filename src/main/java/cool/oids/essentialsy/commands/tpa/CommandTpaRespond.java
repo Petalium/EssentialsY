@@ -21,7 +21,7 @@ public class CommandTpaRespond extends PlayerExclusiveCommand {
             Player tpaSender = (Player) ActiveTpas.activeSenders.get(ActiveTpas.getActiveRecipients().indexOf(sender)); //gets tpa sender based off recipient index
             ActiveTpas.removeSender(ActiveTpas.removeRecipient(sender)); //removes recipient and sender from lists
 
-            switch(label) {
+            switch (label) {
                 case "tpaccept" -> {
                     tpaSender.teleport((sender).getLocation());
                     sender.sendMessage(ChatColor.GREEN + "Accepted " + playerNameColor + tpaSender.getName() + ChatColor.GREEN + " tpa request");

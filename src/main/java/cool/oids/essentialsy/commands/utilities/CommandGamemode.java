@@ -31,7 +31,8 @@ public class CommandGamemode extends PlayerExclusiveCommand {
                     player.setGameMode(GameMode.SPECTATOR);
                     sender.sendMessage(msg + "Spectator");
                 }
-                default -> {}
+                default -> {
+                }
             }
         }
     }

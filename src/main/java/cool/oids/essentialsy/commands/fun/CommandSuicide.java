@@ -16,7 +16,7 @@ public class CommandSuicide extends PlayerExclusiveCommand {
             String msg = playerNameColor + player.getDisplayName() + ChatColor.AQUA;
             player.setHealth(0.0);
 
-            switch(Utils.randomNum(1,4)) {
+            switch (Utils.randomNum(1, 4)) {
                 case 1 -> msg += " committed suicide";
                 case 2 -> msg += " no longer wanted to be in this world";
                 case 3 -> msg += " ended it all";

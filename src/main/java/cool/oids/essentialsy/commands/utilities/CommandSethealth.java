@@ -42,7 +42,7 @@ public class CommandSethealth extends EssentialsCommand {
             }
 
             player.setHealth(amnt);
-            sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " health to " + ChatColor.GOLD + amnt );
+            sender.sendMessage(ChatColor.AQUA + "Set player " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " health to " + ChatColor.GOLD + amnt);
         }
     }
 }

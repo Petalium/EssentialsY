@@ -3,7 +3,9 @@ package cool.oids.essentialsy;
 import static org.bukkit.Bukkit.getPlayerExact;
 
 import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

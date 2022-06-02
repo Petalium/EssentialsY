@@ -6,11 +6,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
-public class CommandFly extends EssentialsCommand {
+public class CommandFullBright extends EssentialsCommand {
+
     private static final String enabledString =
             ChatColor.AQUA
-                    + "Fly "
+                    + "Fullbright "
                     + ChatColor.GOLD
                     + "Enabled"
                     + ChatColor.AQUA
@@ -18,7 +21,7 @@ public class CommandFly extends EssentialsCommand {
                     + playerNameColor;
     private static final String disabledString =
             ChatColor.AQUA
-                    + "Fly "
+                    + "Fullbright "
                     + ChatColor.GOLD
                     + "Disabled"
                     + ChatColor.AQUA
@@ -27,13 +30,18 @@ public class CommandFly extends EssentialsCommand {
 
     @Override
     public void run(CommandSender sender, Command command, String label, String[] args) {
-        Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+        Player player;
+        if (sender instanceof Player ) {
+            player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+        } else { player = Utils.extractPlayerArgWithWarnings(sender, args); }
         if (player != null) {
-            player.setAllowFlight(!player.getAllowFlight());
-            sender.sendMessage(
-                    player.getAllowFlight()
-                            ? enabledString + player.getDisplayName()
-                            : disabledString + player.getDisplayName());
+            if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
+                player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                sender.sendMessage(disabledString + player.getDisplayName());
+                return;
+            }
+            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 255, false, false, false));
+            sender.sendMessage(enabledString + player.getDisplayName());
         }
     }
 }

@@ -16,7 +16,7 @@ public class CommandBigTree extends PlayerExclusiveCommand {
     public void run(Player player, Command command, String label, String[] args) {
         player = Utils.extractPlayerArgOrSenderWithWarnings(player, args);
         World world = player.getWorld();
-        Block targetBlock = player.getTargetBlock(null,300);
+        Block targetBlock = player.getTargetBlock(null, 300);
 
         if (targetBlock.getType().isSolid()) {
             // Tree generation can fail depending on the TreeType, so we retry 5 times
@@ -33,7 +33,7 @@ public class CommandBigTree extends PlayerExclusiveCommand {
     }
 
     boolean generateTree(World world, Block targetBlock, TreeType treeType) {
-        return world.generateTree(targetBlock.getLocation().add(0,1,0), treeType);
+        return world.generateTree(targetBlock.getLocation().add(0, 1, 0), treeType);
     }
 
     TreeType getTree() {

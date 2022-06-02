@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
 public class CommandTpaCancel extends PlayerExclusiveCommand {
-  @Override
-  public void run(Player player, Command command, String label, String[] args) {}
+    @Override
+    public void run(Player player, Command command, String label, String[] args) {
+    }
 }

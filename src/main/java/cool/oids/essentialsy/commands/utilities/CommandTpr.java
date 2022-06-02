@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class CommandTpr extends PlayerExclusiveCommand {
 
-    public void run (Player sender, Command command, String label, String[] args) {
+    public void run(Player sender, Command command, String label, String[] args) {
         if (args.length > 0) {
             int rng;
             try {
@@ -25,17 +25,18 @@ public class CommandTpr extends PlayerExclusiveCommand {
                 int rndY = Utils.randomNum(10, rng);
                 Location loc = sender.getLocation();
                 World world = sender.getWorld();
-                Location newLoc = new Location(sender.getWorld(), loc.getBlockX() + rndX , 0, loc.getBlockX() + rndY);
+                Location newLoc = new Location(sender.getWorld(), loc.getBlockX() + rndX, 0, loc.getBlockX() + rndY);
                 newLoc.setY(world.getHighestBlockYAt(newLoc));
 
                 sender.teleport(newLoc);
                 sender.sendMessage(
-                    ChatColor.AQUA
-                        + "Randomly teleport to " + ChatColor.GOLD + " (" + newLoc.getBlockY() + ", " + newLoc.getBlockY() + ", " + newLoc.getBlockZ() + ") "
-                        + ChatColor.AQUA + "in a " + ChatColor.GOLD + rng + "x" + rng + ChatColor.AQUA + " area");
+                        ChatColor.AQUA
+                                + "Randomly teleport to " + ChatColor.GOLD + " (" + newLoc.getBlockY() + ", " + newLoc.getBlockY() + ", " + newLoc.getBlockZ() + ") "
+                                + ChatColor.AQUA + "in a " + ChatColor.GOLD + rng + "x" + rng + ChatColor.AQUA + " area");
 
             } else {
-                sender.sendMessage(ChatColor.RED + "Range out of bounds " + ChatColor.GOLD + "(10-500)"); }
+                sender.sendMessage(ChatColor.RED + "Range out of bounds " + ChatColor.GOLD + "(10-500)");
+            }
         } else {
             sender.sendMessage(ChatColor.RED + "Range not specified");
         }

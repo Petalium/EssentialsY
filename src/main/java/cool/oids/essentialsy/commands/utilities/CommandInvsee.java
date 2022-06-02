@@ -2,7 +2,9 @@ package cool.oids.essentialsy.commands.utilities;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
+
 import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -37,7 +39,7 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
         contents = new ItemStack(Material.CHEST);
         meta = contents.getItemMeta();
         assert meta != null;
-        meta.setDisplayName(ChatColor.GOLD +"Contents");
+        meta.setDisplayName(ChatColor.GOLD + "Contents");
         lore[0] = ChatColor.GRAY + "Alters players inventory";
         meta.setLore(Arrays.asList(lore));
         contents.setItemMeta(meta);
@@ -68,7 +70,7 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
             skullMeta.setOwningPlayer(player);
             plrHead.setItemMeta(skullMeta);
 
-            Inventory select = Bukkit.createInventory(player,9, "Inventory selection");
+            Inventory select = Bukkit.createInventory(player, 9, "Inventory selection");
             select.setItem(0, plrHead);
             select.setItem(3, equip);
             select.setItem(5, contents);

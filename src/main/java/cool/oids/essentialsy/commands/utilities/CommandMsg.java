@@ -15,11 +15,11 @@ public class CommandMsg extends EssentialsCommand {
             if (player != null) {
                 if (args.length > 1) {
                     sender.sendMessage
-                        (ChatColor.GRAY + "[" + ChatColor.AQUA + "You" + ChatColor.DARK_AQUA + " > " + ChatColor.AQUA + player.getDisplayName() +
-                            ChatColor.GRAY + "]: " + ChatColor.LIGHT_PURPLE + Utils.getMessage(args,1));
+                            (ChatColor.GRAY + "[" + ChatColor.AQUA + "You" + ChatColor.DARK_AQUA + " > " + ChatColor.AQUA + player.getDisplayName() +
+                                    ChatColor.GRAY + "]: " + ChatColor.LIGHT_PURPLE + Utils.getMessage(args, 1));
                     player.sendMessage
-                        (ChatColor.GRAY + "[" + ChatColor.AQUA + player.getDisplayName() + ChatColor.DARK_AQUA + " > " + ChatColor.AQUA + "You" +
-                            ChatColor.GRAY + "]: " + ChatColor.LIGHT_PURPLE + Utils.getMessage(args,1));
+                            (ChatColor.GRAY + "[" + ChatColor.AQUA + player.getDisplayName() + ChatColor.DARK_AQUA + " > " + ChatColor.AQUA + "You" +
+                                    ChatColor.GRAY + "]: " + ChatColor.LIGHT_PURPLE + Utils.getMessage(args, 1));
                 } else {
                     sender.sendMessage(ChatColor.RED + "No message inputted");
                 }

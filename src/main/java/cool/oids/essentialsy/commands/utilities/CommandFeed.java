@@ -7,18 +7,18 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
 public class CommandFeed extends PlayerExclusiveCommand {
-  @Override
-  public void run(Player sender, Command command, String label, String[] args) {
-    Player playerToFeed = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
-    if (playerToFeed != null) {
-      playerToFeed.setFoodLevel(20);
-      sender.sendMessage(
-          ChatColor.AQUA
-              + "Restored player "
-              + playerNameColor
-              + playerToFeed.getDisplayName()
-              + ChatColor.AQUA
-              + " hunger");
+    @Override
+    public void run(Player sender, Command command, String label, String[] args) {
+        Player playerToFeed = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+        if (playerToFeed != null) {
+            playerToFeed.setFoodLevel(20);
+            sender.sendMessage(
+                    ChatColor.AQUA
+                            + "Restored player "
+                            + playerNameColor
+                            + playerToFeed.getDisplayName()
+                            + ChatColor.AQUA
+                            + " hunger");
+        }
     }
-  }
 }

@@ -82,6 +82,9 @@ commands:
   disposal:
     description: Opens an inventory to dispose of items
     usage: /disposal
+  fullbright:
+    description: Toggles fullbright
+    usage: /fullbright [Player]
 
   tpa:
     description: Sends a request to teleport to another player

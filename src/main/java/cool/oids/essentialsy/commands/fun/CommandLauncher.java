@@ -28,7 +28,7 @@ public class CommandLauncher extends EssentialsCommand {
         assert meta != null;
         meta.setDisplayName("" + ChatColor.GOLD + ChatColor.BOLD + "Launcher");
         meta.setLore(Arrays.asList(lore));
-        meta.addEnchant(Enchantment.LUCK, 1,false);
+        meta.addEnchant(Enchantment.LUCK, 1, false);
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE);
         launcher.setItemMeta(meta);

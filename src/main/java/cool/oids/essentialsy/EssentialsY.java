@@ -2,29 +2,11 @@ package cool.oids.essentialsy;
 
 import cool.oids.essentialsy.commands.fun.CommandAirstrike;
 import cool.oids.essentialsy.commands.fun.CommandBigTree;
-import cool.oids.essentialsy.commands.utilities.CommandBroadcast;
-import cool.oids.essentialsy.commands.utilities.CommandDisposal;
-import cool.oids.essentialsy.commands.utilities.CommandDown;
-import cool.oids.essentialsy.commands.utilities.CommandEC;
-import cool.oids.essentialsy.commands.utilities.CommandFeed;
-import cool.oids.essentialsy.commands.utilities.CommandFly;
-import cool.oids.essentialsy.commands.utilities.CommandGamemode;
-import cool.oids.essentialsy.commands.utilities.CommandHeal;
-import cool.oids.essentialsy.commands.utilities.CommandInvsee;
+import cool.oids.essentialsy.commands.utilities.*;
 import cool.oids.essentialsy.commands.fun.CommandKittyCannon;
 import cool.oids.essentialsy.commands.fun.CommandLauncher;
-import cool.oids.essentialsy.commands.utilities.CommandMsg;
 import cool.oids.essentialsy.commands.fun.CommandNuke;
-import cool.oids.essentialsy.commands.utilities.CommandPing;
-import cool.oids.essentialsy.commands.utilities.CommandRepair;
-import cool.oids.essentialsy.commands.utilities.CommandS;
-import cool.oids.essentialsy.commands.utilities.CommandSetHunger;
-import cool.oids.essentialsy.commands.utilities.CommandSethealth;
 import cool.oids.essentialsy.commands.fun.CommandSuicide;
-import cool.oids.essentialsy.commands.utilities.CommandTop;
-import cool.oids.essentialsy.commands.utilities.CommandTpr;
-import cool.oids.essentialsy.commands.utilities.CommandUp;
-import cool.oids.essentialsy.commands.utilities.CommandWorkBench;
 import cool.oids.essentialsy.commands.punish.CommandBan;
 import cool.oids.essentialsy.commands.punish.CommandKick;
 import cool.oids.essentialsy.commands.punish.CommandUnban;
@@ -39,56 +21,57 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EssentialsY extends JavaPlugin {
 
-  @SuppressWarnings("ConstantConditions")
-  @Override
-  public void onEnable() {
-    this.getCommand("fly").setExecutor(new CommandFly());
-    this.getCommand("msg").setExecutor(new CommandMsg());
-    this.getCommand("up").setExecutor(new CommandUp());
-    this.getCommand("down").setExecutor(new CommandDown());
-    this.getCommand("top").setExecutor(new CommandTop());
-    this.getCommand("repair").setExecutor(new CommandRepair());
-    this.getCommand("s").setExecutor(new CommandS());
-    this.getCommand("feed").setExecutor(new CommandFeed());
-    this.getCommand("heal").setExecutor(new CommandHeal());
-    this.getCommand("sethealth").setExecutor(new CommandSethealth());
-    this.getCommand("sethunger").setExecutor(new CommandSetHunger());
-    this.getCommand("ec").setExecutor(new CommandEC());
-    this.getCommand("workbench").setExecutor(new CommandWorkBench());
-    this.getCommand("bigtree").setExecutor(new CommandBigTree());
-    this.getCommand("launcher").setExecutor(new CommandLauncher());
-    this.getCommand("kittycannon").setExecutor(new CommandKittyCannon());
-    this.getCommand("ping").setExecutor(new CommandPing());
-    this.getCommand("suicide").setExecutor(new CommandSuicide());
-    this.getCommand("broadcast").setExecutor(new CommandBroadcast());
-    this.getCommand("invsee").setExecutor(new CommandInvsee());
-    this.getCommand("nuke").setExecutor(new CommandNuke());
-    this.getCommand("airstrike").setExecutor(new CommandAirstrike());
-    this.getCommand("disposal").setExecutor(new CommandDisposal());
-    this.getCommand("tpr").setExecutor(new CommandTpr());
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void onEnable() {
+        this.getCommand("fly").setExecutor(new CommandFly());
+        this.getCommand("msg").setExecutor(new CommandMsg());
+        this.getCommand("up").setExecutor(new CommandUp());
+        this.getCommand("down").setExecutor(new CommandDown());
+        this.getCommand("top").setExecutor(new CommandTop());
+        this.getCommand("repair").setExecutor(new CommandRepair());
+        this.getCommand("s").setExecutor(new CommandS());
+        this.getCommand("feed").setExecutor(new CommandFeed());
+        this.getCommand("heal").setExecutor(new CommandHeal());
+        this.getCommand("sethealth").setExecutor(new CommandSethealth());
+        this.getCommand("sethunger").setExecutor(new CommandSetHunger());
+        this.getCommand("ec").setExecutor(new CommandEC());
+        this.getCommand("workbench").setExecutor(new CommandWorkBench());
+        this.getCommand("bigtree").setExecutor(new CommandBigTree());
+        this.getCommand("launcher").setExecutor(new CommandLauncher());
+        this.getCommand("kittycannon").setExecutor(new CommandKittyCannon());
+        this.getCommand("ping").setExecutor(new CommandPing());
+        this.getCommand("suicide").setExecutor(new CommandSuicide());
+        this.getCommand("broadcast").setExecutor(new CommandBroadcast());
+        this.getCommand("invsee").setExecutor(new CommandInvsee());
+        this.getCommand("nuke").setExecutor(new CommandNuke());
+        this.getCommand("airstrike").setExecutor(new CommandAirstrike());
+        this.getCommand("disposal").setExecutor(new CommandDisposal());
+        this.getCommand("tpr").setExecutor(new CommandTpr());
+        this.getCommand("fullbright").setExecutor(new CommandFullBright());
 
-    this.getCommand("tpa").setExecutor(new CommandTpa());
-    this.getCommand("tpahere").setExecutor(new CommandTpahere());
-    this.getCommand("tpaccept").setExecutor(new CommandTpaRespond());
-    this.getCommand("tpdeny").setExecutor(new CommandTpaRespond());
-    this.getCommand("tpacancel").setExecutor(new CommandTpaCancel());
+        this.getCommand("tpa").setExecutor(new CommandTpa());
+        this.getCommand("tpahere").setExecutor(new CommandTpahere());
+        this.getCommand("tpaccept").setExecutor(new CommandTpaRespond());
+        this.getCommand("tpdeny").setExecutor(new CommandTpaRespond());
+        this.getCommand("tpacancel").setExecutor(new CommandTpaCancel());
 
-    this.getCommand("gma").setExecutor(new CommandGamemode());
-    this.getCommand("gms").setExecutor(new CommandGamemode());
-    this.getCommand("gmc").setExecutor(new CommandGamemode());
-    this.getCommand("gmsp").setExecutor(new CommandGamemode());
+        this.getCommand("gma").setExecutor(new CommandGamemode());
+        this.getCommand("gms").setExecutor(new CommandGamemode());
+        this.getCommand("gmc").setExecutor(new CommandGamemode());
+        this.getCommand("gmsp").setExecutor(new CommandGamemode());
 
-    this.getCommand("ban").setExecutor(new CommandBan());
-    this.getCommand("unban").setExecutor(new CommandUnban());
-    this.getCommand("kick").setExecutor(new CommandKick());
+        this.getCommand("ban").setExecutor(new CommandBan());
+        this.getCommand("unban").setExecutor(new CommandUnban());
+        this.getCommand("kick").setExecutor(new CommandKick());
 
-    getServer().getPluginManager().registerEvents(new EssentialsPlayerEvent(), this);
-    getServer().getPluginManager().registerEvents(new EssentialsInventoryEvent(), this);
-  }
+        getServer().getPluginManager().registerEvents(new EssentialsPlayerEvent(), this);
+        getServer().getPluginManager().registerEvents(new EssentialsInventoryEvent(), this);
+    }
 
-  @Override
-  public void onDisable() {
-    Bukkit.getLogger().info("Disabling");
-  }
+    @Override
+    public void onDisable() {
+        Bukkit.getLogger().info("Disabling");
+    }
 
 }

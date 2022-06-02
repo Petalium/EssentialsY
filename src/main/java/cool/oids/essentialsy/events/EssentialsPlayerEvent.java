@@ -22,17 +22,17 @@ public class EssentialsPlayerEvent implements Listener {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             launchType = "normal";
         }
-        if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK){
+        if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
             launchType = "inverse";
         }
 
         if (e.getItem() != null) {
             if (Objects.equals(e.getItem().getItemMeta(), launcher.getItemMeta())) {
-                switch(launchType) {
-                    case "normal" -> Utils.launch(player,1,10);
-                    case "inverse" -> Utils.launch(player,-1,10);
+                switch (launchType) {
+                    case "normal" -> Utils.launch(player, 1, 10);
+                    case "inverse" -> Utils.launch(player, -1, 10);
                 }
-                player.getWorld().createExplosion(player.getLocation(),0);
+                player.getWorld().createExplosion(player.getLocation(), 0);
             }
         }
     }
