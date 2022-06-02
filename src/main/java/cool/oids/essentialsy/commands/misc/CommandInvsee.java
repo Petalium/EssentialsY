@@ -17,11 +17,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
+
+    private static Player player;
     private final ItemStack equip;
     private final ItemStack contents;
     private final ItemStack clear;
     private final ItemStack plrHead;
-    private static Player player;
     private final String[] lore = new String[1];
 
     public CommandInvsee() {
@@ -106,4 +107,5 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
             }
         }
     }
+
 }

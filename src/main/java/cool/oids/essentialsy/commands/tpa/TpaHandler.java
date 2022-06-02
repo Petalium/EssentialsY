@@ -9,9 +9,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class TpaHandler {
-  private boolean activeRequest;
   private final Player player;
   private final CommandSender sender;
+  private boolean activeRequest;
 
   public TpaHandler(Player plr, CommandSender snd) {
     player = plr;
