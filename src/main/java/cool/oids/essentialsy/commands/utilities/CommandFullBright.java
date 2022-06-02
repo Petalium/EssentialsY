@@ -33,7 +33,9 @@ public class CommandFullBright extends EssentialsCommand {
         Player player;
         if (sender instanceof Player ) {
             player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
-        } else { player = Utils.extractPlayerArgWithWarnings(sender, args); }
+        } else {
+            player = Utils.extractPlayerArgWithWarnings(sender, args);
+        }
         if (player != null) {
             if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
                 player.removePotionEffect(PotionEffectType.NIGHT_VISION);

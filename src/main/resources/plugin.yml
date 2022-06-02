@@ -85,6 +85,15 @@ commands:
   fullbright:
     description: Toggles fullbright
     usage: /fullbright [Player]
+  skull:
+    description: Gets player skulls
+    usage: /skull [Player]
+  batmount:
+    description: Mounts player to a flying bat
+    usage: /batmount
+  players:
+    description: Open a list of players online
+    usage: /players
 
   tpa:
     description: Sends a request to teleport to another player

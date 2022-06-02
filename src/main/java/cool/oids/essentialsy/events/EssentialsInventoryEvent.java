@@ -3,14 +3,19 @@ package cool.oids.essentialsy.events;
 
 import static cool.oids.essentialsy.commands.EssentialsCommand.playerNameColor;
 
+import cool.oids.essentialsy.Utils;
+import cool.oids.essentialsy.commands.utilities.CommandPlayerList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+
+import java.util.Objects;
 
 public class EssentialsInventoryEvent implements Listener {
 
@@ -47,6 +52,13 @@ public class EssentialsInventoryEvent implements Listener {
                     }
                 }
             }
+        } else if (e.getView().getTitle().equals("Players online") && e.getCurrentItem() != null) {
+            Player sender = (Player) e.getWhoClicked();
+            Player player = Utils.getOnlinePlayers().get(e.getRawSlot());
+            sender.teleport(player);
+            sender.sendMessage(ChatColor.AQUA + "Teleporting to " + playerNameColor + player.getDisplayName());
+            sender.closeInventory();
+            e.setCancelled(true);
         }
     }
 }

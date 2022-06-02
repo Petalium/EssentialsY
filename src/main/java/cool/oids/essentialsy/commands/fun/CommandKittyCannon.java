@@ -8,11 +8,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 
 public class CommandKittyCannon extends PlayerExclusiveCommand {
     public void run(Player player, Command command, String label, String[] args) {
@@ -30,20 +30,20 @@ public class CommandKittyCannon extends PlayerExclusiveCommand {
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         final Runnable runnable =
                 new Runnable() {
-                    int timer = 2; // time (SECONDS) till TPA expires
+                    int timer = 1000; // time (SECONDS) till TPA expires
 
                     public void run() {
                         timer--;
                         if (timer < 0) {
-
-                            // DOES NOT WORK :(
-                            final Location loc = entity.getLocation();
-                            world.createExplosion(loc, 0);
-                            entity.setGlowing(true);
+                            Location loc = entity.getLocation();
+                            Damageable cat = (Damageable) entity;
+                            world.spawnParticle(Particle.EXPLOSION_HUGE, loc, 1);
+                            world.playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1, 1);
+                            cat.setHealth(0);
                             scheduler.shutdown();
                         }
                     }
                 };
-        scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.MILLISECONDS);
     }
 }

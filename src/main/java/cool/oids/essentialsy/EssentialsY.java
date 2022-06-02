@@ -1,12 +1,7 @@
 package cool.oids.essentialsy;
 
-import cool.oids.essentialsy.commands.fun.CommandAirstrike;
-import cool.oids.essentialsy.commands.fun.CommandBigTree;
+import cool.oids.essentialsy.commands.fun.*;
 import cool.oids.essentialsy.commands.utilities.*;
-import cool.oids.essentialsy.commands.fun.CommandKittyCannon;
-import cool.oids.essentialsy.commands.fun.CommandLauncher;
-import cool.oids.essentialsy.commands.fun.CommandNuke;
-import cool.oids.essentialsy.commands.fun.CommandSuicide;
 import cool.oids.essentialsy.commands.punish.CommandBan;
 import cool.oids.essentialsy.commands.punish.CommandKick;
 import cool.oids.essentialsy.commands.punish.CommandUnban;
@@ -14,6 +9,7 @@ import cool.oids.essentialsy.commands.tpa.CommandTpa;
 import cool.oids.essentialsy.commands.tpa.CommandTpaCancel;
 import cool.oids.essentialsy.commands.tpa.CommandTpaRespond;
 import cool.oids.essentialsy.commands.tpa.CommandTpahere;
+import cool.oids.essentialsy.events.EssentialsDismountEvent;
 import cool.oids.essentialsy.events.EssentialsInventoryEvent;
 import cool.oids.essentialsy.events.EssentialsPlayerEvent;
 import org.bukkit.Bukkit;
@@ -49,6 +45,9 @@ public final class EssentialsY extends JavaPlugin {
         this.getCommand("disposal").setExecutor(new CommandDisposal());
         this.getCommand("tpr").setExecutor(new CommandTpr());
         this.getCommand("fullbright").setExecutor(new CommandFullBright());
+        this.getCommand("skull").setExecutor(new CommandSkull());
+        this.getCommand("batmount").setExecutor(new CommandBatMount());
+        this.getCommand("players").setExecutor(new CommandPlayerList());
 
         this.getCommand("tpa").setExecutor(new CommandTpa());
         this.getCommand("tpahere").setExecutor(new CommandTpahere());
@@ -67,6 +66,7 @@ public final class EssentialsY extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new EssentialsPlayerEvent(), this);
         getServer().getPluginManager().registerEvents(new EssentialsInventoryEvent(), this);
+        getServer().getPluginManager().registerEvents(new EssentialsDismountEvent(), this);
     }
 
     @Override
