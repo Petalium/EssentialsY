@@ -3,6 +3,7 @@ package cool.oids.essentialsy;
 import cool.oids.essentialsy.commands.misc.CommandAirstrike;
 import cool.oids.essentialsy.commands.misc.CommandBigTree;
 import cool.oids.essentialsy.commands.misc.CommandBroadcast;
+import cool.oids.essentialsy.commands.misc.CommandDisposal;
 import cool.oids.essentialsy.commands.misc.CommandDown;
 import cool.oids.essentialsy.commands.misc.CommandEC;
 import cool.oids.essentialsy.commands.misc.CommandFeed;
@@ -61,6 +62,7 @@ public final class EssentialsY extends JavaPlugin {
     this.getCommand("invsee").setExecutor(new CommandInvsee());
     this.getCommand("nuke").setExecutor(new CommandNuke());
     this.getCommand("airstrike").setExecutor(new CommandAirstrike());
+    this.getCommand("disposal").setExecutor(new CommandDisposal());
 
     this.getCommand("tpa").setExecutor(new CommandTpa());
     this.getCommand("tpahere").setExecutor(new CommandTpahere());

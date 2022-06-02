@@ -76,6 +76,9 @@ commands:
   airstrike:
     description: Sends a targeted airstrike to a player
     usage: /airstrike [Player]
+  disposal:
+    description: Opens an inventory to dispose of items
+    usage: /disposal
   tpa:
     description: Sends a request to teleport to another player
     usage: /tpa {Player}
