@@ -12,7 +12,7 @@ public class CommandGamemode extends PlayerExclusiveCommand {
         Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
 
         if (player != null) {
-            String msg = ChatColor.AQUA + "set gamemode for " + ChatColor.YELLOW + player.getDisplayName() + ChatColor.AQUA + " to " + ChatColor.GOLD;
+            String msg = ChatColor.AQUA + "Set gamemode for " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " to " + ChatColor.GOLD;
 
             switch (label) {
                 case "gma" -> {
