@@ -4,9 +4,7 @@ import static org.bukkit.Bukkit.getPlayerExact;
 
 import com.google.common.collect.Lists;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,7 +14,6 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class Utils {

@@ -1,21 +1,12 @@
 package cool.oids.essentialsy.commands.fun;
 
-import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-
-import java.util.Arrays;
-
-import static org.bukkit.Bukkit.getPlayerExact;
 
 public class CommandSkull extends PlayerExclusiveCommand {
     private final ItemStack skull;
@@ -40,6 +31,7 @@ public class CommandSkull extends PlayerExclusiveCommand {
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         assert skullMeta != null;
         skullMeta.setOwner(name); //fine to use in this command
+        skullMeta.setDisplayName(name + "'s " + "skull");
         skull.setItemMeta(skullMeta);
 
         sender.getInventory().addItem(skull);
