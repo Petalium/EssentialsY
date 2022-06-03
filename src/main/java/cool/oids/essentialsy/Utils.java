@@ -1,7 +1,5 @@
 package cool.oids.essentialsy;
 
-import static org.bukkit.Bukkit.getPlayerExact;
-
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -15,6 +13,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+
+import static cool.oids.essentialsy.commands.EssentialsCommand.ranFromConsoleError;
 
 public class Utils {
     public static String getMessage(String[] args, int index) {
@@ -75,7 +75,7 @@ public class Utils {
         if (args.length > 0) {
             String trimmed = args[0].trim();
             if (trimmed.length() > 2) {
-                Player player = getPlayerExact(trimmed);
+                Player player = Bukkit.getPlayerExact(trimmed);
 
                 if (player != null) {
                     return player;
@@ -108,25 +108,25 @@ public class Utils {
     }
 
     public static Player extractPlayerArgOrSenderWithWarnings(CommandSender sender, String[] args) {
-        if (sender instanceof Player senderPlayer) {
-            if (args.length > 0) {
-                String trimmed = args[0].trim();
-                if (trimmed.length() > 2) {
-                    Player player = getPlayerExact(trimmed);
-                    if (player == null) {
-                        sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
-                    }
-
-                    return player;
+        if (args.length > 0) {
+            String trimmed = args[0].trim();
+            if (trimmed.length() > 2) {
+                Player player = Bukkit.getPlayerExact(trimmed);
+                if (player == null) {
+                    sender.sendMessage(ChatColor.RED + "Player " + ChatColor.GOLD + trimmed + ChatColor.RED + " is not online");
+                    return null;
                 }
 
-                sender.sendMessage(ChatColor.RED + "Player does not exist");
-                return null;
+                return player;
             }
 
+            sender.sendMessage(ChatColor.RED + "Player does not exist");
+            return null;
+        } else if (sender instanceof Player senderPlayer) {
             return senderPlayer;
         }
 
+        ranFromConsoleError(sender);
         return null;
     }
 

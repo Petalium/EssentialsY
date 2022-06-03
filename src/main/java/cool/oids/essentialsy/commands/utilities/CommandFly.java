@@ -1,13 +1,12 @@
 package cool.oids.essentialsy.commands.utilities;
 
-import cool.oids.essentialsy.Utils;
-import cool.oids.essentialsy.commands.EssentialsCommand;
+import cool.oids.essentialsy.commands.ToggleableCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandFly extends EssentialsCommand {
+public class CommandFly extends ToggleableCommand {
     private static final String enabledString =
             ChatColor.AQUA
                     + "Fly "
@@ -27,13 +26,16 @@ public class CommandFly extends EssentialsCommand {
 
     @Override
     public void run(CommandSender sender, Command command, String label, String[] args) {
-        Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
-        if (player != null) {
-            player.setAllowFlight(!player.getAllowFlight());
-            sender.sendMessage(
-                    player.getAllowFlight()
-                            ? enabledString + player.getDisplayName()
-                            : disabledString + player.getDisplayName());
-        }
+        toggleFromArgs(sender, args);
     }
+
+    @Override
+    protected void executeToggle(CommandSender sender, Player receiver) {
+        receiver.setAllowFlight(!receiver.getAllowFlight());
+        sender.sendMessage(
+                receiver.getAllowFlight()
+                        ? enabledString + receiver.getDisplayName()
+                        : disabledString + receiver.getDisplayName());
+    }
+
 }

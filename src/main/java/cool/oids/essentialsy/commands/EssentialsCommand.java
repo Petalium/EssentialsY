@@ -20,7 +20,7 @@ public abstract class EssentialsCommand implements IEssentialsCommand {
         return subCommands;
     }
 
-    public void ranFromConsoleError(CommandSender sender) {
+    public static void ranFromConsoleError(CommandSender sender) {
         sender.sendMessage("" + ChatColor.RED + "This command cannot be run in console");
     }
 }
