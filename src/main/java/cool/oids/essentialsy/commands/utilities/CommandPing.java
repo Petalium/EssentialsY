@@ -7,23 +7,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandPing extends EssentialsCommand {
-    static String usageString = "/ping [player]";
 
-    @Override
-    public void run(CommandSender sender, Command command, String label, String[] args) {
-        Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
-        if (player != null) {
-            String prefix;
-            if (args.length == 0) {
-                prefix = "Ping: ";
-            } else {
-                prefix = playerNameColor + player.getDisplayName() + "'s " + "ping: ";
-            }
+	static String usageString = "/ping [player]";
 
-            sender.sendMessage(prefix + player.getPing());
-            return;
-        }
+	@Override
+	public void run(CommandSender sender, Command command, String label, String[] args) {
+		Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
+		if (player != null) {
+			String prefix;
+			if (args.length == 0) {
+				prefix = "Ping: ";
+			} else {
+				prefix = playerNameColor + player.getDisplayName() + "'s " + "ping: ";
+			}
 
-        sender.sendMessage(usageString);
-    }
+			sender.sendMessage(prefix + player.getPing());
+			return;
+		}
+
+		sender.sendMessage(usageString);
+	}
+
 }

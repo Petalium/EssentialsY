@@ -10,40 +10,41 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
 public class CommandBigTree extends PlayerExclusiveCommand {
-    private static final int maxRetries = 5;
 
-    @Override
-    public void run(Player player, Command command, String label, String[] args) {
-        player = Utils.extractPlayerArgOrSenderWithWarnings(player, args);
-        World world = player.getWorld();
-        Block targetBlock = player.getTargetBlock(null, 300);
+	private static final int maxRetries = 5;
 
-        if (targetBlock.getType().isSolid()) {
-            // Tree generation can fail depending on the TreeType, so we retry 5 times
-            for (int i = 0; i < maxRetries; i++) {
-                if (!generateTree(world, targetBlock, getTree())) {
-                    continue;
-                }
+	@Override
+	public void run(Player player, Command command, String label, String[] args) {
+		World world = player.getWorld();
+		Block targetBlock = player.getTargetBlock(null, 300);
 
-                return;
-            }
-        }
+		if (targetBlock.getType().isSolid()) {
+			// Tree generation can fail depending on the TreeType, so we retry 5 times
+			for (int i = 0; i < maxRetries; i++) {
+				if (!generateTree(world, targetBlock, getTree())) {
+					continue;
+				}
 
-        player.sendMessage(ChatColor.RED + "Tree could not be summoned");
-    }
+				return;
+			}
+		}
 
-    boolean generateTree(World world, Block targetBlock, TreeType treeType) {
-        return world.generateTree(targetBlock.getLocation().add(0, 1, 0), treeType);
-    }
+		player.sendMessage(ChatColor.RED + "Tree could not be summoned");
+	}
 
-    TreeType getTree() {
-        return switch (Utils.randomNum(1, 6)) {
-            case 1 -> TreeType.TALL_REDWOOD;
-            case 2 -> TreeType.JUNGLE;
-            case 3 -> TreeType.DARK_OAK;
-            case 4 -> TreeType.MEGA_REDWOOD;
-            case 5 -> TreeType.TALL_BIRCH;
-            default -> TreeType.BIG_TREE;
-        };
-    }
+	boolean generateTree(World world, Block targetBlock, TreeType treeType) {
+		return world.generateTree(targetBlock.getLocation().add(0, 1, 0), treeType);
+	}
+
+	TreeType getTree() {
+		return switch (Utils.randomNum(1, 6)) {
+			case 1 -> TreeType.TALL_REDWOOD;
+			case 2 -> TreeType.JUNGLE;
+			case 3 -> TreeType.DARK_OAK;
+			case 4 -> TreeType.MEGA_REDWOOD;
+			case 5 -> TreeType.TALL_BIRCH;
+			default -> TreeType.BIG_TREE;
+		};
+	}
+
 }

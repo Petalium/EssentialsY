@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,65 +16,68 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CommandPlayerList extends PlayerExclusiveCommand {
-    private static final ItemStack plrHead = new ItemStack(Material.PLAYER_HEAD);
-    private static final ItemStack next = new ItemStack(Material.SPECTRAL_ARROW);
-    private static final ItemStack previous = new ItemStack(Material.SPECTRAL_ARROW);
-    private static final ItemStack nextBlock = new ItemStack(Material.BARRIER);
-    private static final ItemStack previousBlock = new ItemStack(Material.BARRIER);
-    public CommandPlayerList() {
-        ItemMeta meta = next.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName("" + ChatColor.GREEN + ChatColor.BOLD + "Next");
-        next.setItemMeta(meta);
 
-        meta = previous.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName("" + ChatColor.RED + ChatColor.BOLD + "Previous");
-        previous.setItemMeta(meta);
+	private static final ItemStack plrHead = new ItemStack(Material.PLAYER_HEAD);
+	private static final ItemStack next = new ItemStack(Material.SPECTRAL_ARROW);
+	private static final ItemStack previous = new ItemStack(Material.SPECTRAL_ARROW);
+	private static final ItemStack nextBlock = new ItemStack(Material.BARRIER);
+	private static final ItemStack previousBlock = new ItemStack(Material.BARRIER);
 
-        meta = previousBlock.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName("" + ChatColor.DARK_RED + "No previous pages");
-        previousBlock.setItemMeta(meta);
+	public CommandPlayerList() {
+		ItemMeta meta = next.getItemMeta();
+		assert meta != null;
+		meta.setDisplayName("" + ChatColor.GREEN + ChatColor.BOLD + "Next");
+		next.setItemMeta(meta);
 
-        meta = nextBlock.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName("" + ChatColor.DARK_RED + "No further pages");
-        nextBlock.setItemMeta(meta);
-    }
+		meta = previous.getItemMeta();
+		assert meta != null;
+		meta.setDisplayName("" + ChatColor.RED + ChatColor.BOLD + "Previous");
+		previous.setItemMeta(meta);
 
-    public void run(Player sender, Command command, String label, String[] args) {
-        newPage(1, sender);
-    }
+		meta = previousBlock.getItemMeta();
+		assert meta != null;
+		meta.setDisplayName("" + ChatColor.DARK_RED + "No previous pages");
+		previousBlock.setItemMeta(meta);
 
-    public static void newPage(int page, Player sender) {
-        ArrayList<Player> onlinePlayers = Utils.getOnlinePlayers();
-        Inventory list = Bukkit.createInventory(sender, 54, "Players online");
-        ItemMeta meta;
-        SkullMeta skullMeta;
-        String[] lore = {
-                ChatColor.GRAY + "UUID: " + ChatColor.GOLD,
-                ChatColor.GRAY + "Left click to teleport",
-                ChatColor.GRAY + "Right click to view stats " + ChatColor.RED + "(N/A)"
-        };
+		meta = nextBlock.getItemMeta();
+		assert meta != null;
+		meta.setDisplayName("" + ChatColor.DARK_RED + "No further pages");
+		nextBlock.setItemMeta(meta);
+	}
 
-        for (int i = 0; i < onlinePlayers.size(); i++) {
-            Player curPlayer = onlinePlayers.get(i);
-            meta = plrHead.getItemMeta();
-            assert meta != null;
-            meta.setDisplayName(ChatColor.AQUA + "Player " + playerNameColor + curPlayer.getDisplayName());
-            lore[0] += curPlayer.getUniqueId();
-            meta.setLore(Arrays.asList(lore));
-            plrHead.setItemMeta(meta);
+	public static void newPage(int page, Player sender) {
+		ArrayList<Player> onlinePlayers = Utils.getOnlinePlayers();
+		Inventory list = Bukkit.createInventory(sender, 54, "Players online");
+		ItemMeta meta;
+		SkullMeta skullMeta;
+		String[] lore = {
+				ChatColor.GRAY + "UUID: " + ChatColor.GOLD,
+				ChatColor.GRAY + "Left click to teleport",
+				ChatColor.GRAY + "Right click to view stats " + ChatColor.RED + "(N/A)"
+		};
 
-            skullMeta = (SkullMeta) plrHead.getItemMeta();
-            skullMeta.setOwningPlayer(curPlayer);
-            plrHead.setItemMeta(skullMeta);
+		for (int i = 0; i < onlinePlayers.size(); i++) {
+			Player curPlayer = onlinePlayers.get(i);
+			meta = plrHead.getItemMeta();
+			assert meta != null;
+			meta.setDisplayName(ChatColor.AQUA + "Player " + playerNameColor + curPlayer.getDisplayName());
+			lore[0] += curPlayer.getUniqueId();
+			meta.setLore(Arrays.asList(lore));
+			plrHead.setItemMeta(meta);
 
-            list.setItem(i, plrHead);
-        }
+			skullMeta = (SkullMeta) plrHead.getItemMeta();
+			skullMeta.setOwningPlayer(curPlayer);
+			plrHead.setItemMeta(skullMeta);
 
-        sender.closeInventory();
-        sender.openInventory(list);
-    }
+			list.setItem(i, plrHead);
+		}
+
+		sender.closeInventory();
+		sender.openInventory(list);
+	}
+
+	public void run(Player sender, Command command, String label, String[] args) {
+		newPage(1, sender);
+	}
+
 }

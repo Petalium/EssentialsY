@@ -11,45 +11,47 @@ import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
 public class CommandTpa extends PlayerExclusiveCommand {
-    private final BaseComponent[] clickableComponents;
 
-    public CommandTpa() {
-        BaseComponent[] denyComponent =
-                new ComponentBuilder("" + ChatColor.RED + ChatColor.BOLD + "[" + "DENY" + "]")
-                        .event(new ClickEvent(Action.RUN_COMMAND, "/tpdeny"))
-                        .create();
+	private final BaseComponent[] clickableComponents;
 
-        this.clickableComponents =
-                new ComponentBuilder("" + ChatColor.GREEN + ChatColor.BOLD + "[" + "ACCEPT" + "]")
-                        .event(new ClickEvent(Action.RUN_COMMAND, "/tpaccept"))
-                        .append(" ")
-                        .append(denyComponent)
-                        .create();
-    }
+	public CommandTpa() {
+		BaseComponent[] denyComponent =
+				new ComponentBuilder("" + ChatColor.RED + ChatColor.BOLD + "[" + "DENY" + "]")
+						.event(new ClickEvent(Action.RUN_COMMAND, "/tpdeny"))
+						.create();
 
-    @Override
-    public void run(Player player, Command command, String label, String[] args) {
-        Player receiver = Utils.extractPlayerArgWithWarnings(player, args);
-        if (receiver != null) {
-            if (ActiveTpas.getActiveSenders().contains(player)
-                    && ActiveTpas.getActiveRecipients().contains(player)) {
-                player.sendMessage(
-                        ChatColor.RED
-                                + "You have already sent a tpa request to "
-                                + playerNameColor
-                                + player.getDisplayName());
-                return;
-            }
+		this.clickableComponents =
+				new ComponentBuilder("" + ChatColor.GREEN + ChatColor.BOLD + "[" + "ACCEPT" + "]")
+						.event(new ClickEvent(Action.RUN_COMMAND, "/tpaccept"))
+						.append(" ")
+						.append(denyComponent)
+						.create();
+	}
 
-            TpaHandler handler = new TpaHandler(receiver, player);
-            handler.count();
-            player.sendMessage(
-                    ChatColor.AQUA + "Tpa request sent to " + playerNameColor + receiver.getDisplayName());
+	@Override
+	public void run(Player player, Command command, String label, String[] args) {
+		Player receiver = Utils.extractPlayerArgWithWarnings(player, args);
+		if (receiver != null) {
+			if (ActiveTpas.getActiveSenders().contains(player)
+					&& ActiveTpas.getActiveRecipients().contains(player)) {
+				player.sendMessage(
+						ChatColor.RED
+								+ "You have already sent a tpa request to "
+								+ playerNameColor
+								+ player.getDisplayName());
+				return;
+			}
 
-            receiver.sendMessage(
-                    playerNameColor + player.getName() + ChatColor.AQUA + " has sent you a tpa request.");
+			TpaHandler handler = new TpaHandler(receiver, player);
+			handler.count();
+			player.sendMessage(
+					ChatColor.AQUA + "Tpa request sent to " + playerNameColor + receiver.getDisplayName());
 
-            receiver.spigot().sendMessage(clickableComponents);
-        }
-    }
+			receiver.sendMessage(
+					playerNameColor + player.getName() + ChatColor.AQUA + " has sent you a tpa request.");
+
+			receiver.spigot().sendMessage(clickableComponents);
+		}
+	}
+
 }

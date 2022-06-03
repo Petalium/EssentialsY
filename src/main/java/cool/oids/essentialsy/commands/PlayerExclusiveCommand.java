@@ -6,20 +6,21 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class PlayerExclusiveCommand extends EssentialsCommand {
-    @Override
-    public boolean onCommand(
-            @NotNull CommandSender sender,
-            @NotNull Command command,
-            @NotNull String label,
-            String[] args) {
-        if (sender instanceof Player player) {
-            run(player, command, label, args);
-            return true;
-        }
 
-        ranFromConsoleError(sender);
-        return true;
-    }
+	@Override
+	public boolean onCommand(
+			@NotNull CommandSender sender,
+			@NotNull Command command,
+			@NotNull String label,
+			String[] args) {
+		if (sender instanceof Player player) {
+			run(player, command, label, args);
+			return true;
+		}
+
+		ranFromConsoleError(sender);
+		return true;
+	}
 
 
 }
