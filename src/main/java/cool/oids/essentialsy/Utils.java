@@ -1,5 +1,6 @@
 package cool.oids.essentialsy;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
@@ -159,8 +160,8 @@ public class Utils {
 		return players;
 	}
 
-	public static ArrayList<Player> getOnlinePlayers() {
-		return new ArrayList<>(Bukkit.getOnlinePlayers());
+	public static ImmutableList<? extends Player> getOnlinePlayers() {
+		return ImmutableList.copyOf(Bukkit.getOnlinePlayers());
 	}
 
 }
