@@ -9,9 +9,10 @@ import cool.oids.essentialsy.commands.tpa.CommandTpaCancel;
 import cool.oids.essentialsy.commands.tpa.CommandTpaRespond;
 import cool.oids.essentialsy.commands.tpa.CommandTpahere;
 import cool.oids.essentialsy.commands.utilities.*;
-import cool.oids.essentialsy.events.EssentialsDismountEvent;
-import cool.oids.essentialsy.events.EssentialsInventoryEvent;
+import cool.oids.essentialsy.events.EssentialsBatDismountEvent;
+import cool.oids.essentialsy.events.EssentialsInvseeInventoryEvent;
 import cool.oids.essentialsy.events.EssentialsPlayerEvent;
+import cool.oids.essentialsy.events.EssentialsPlayersInventoryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,15 +40,15 @@ public final class EssentialsY extends JavaPlugin {
 		this.getCommand("ping").setExecutor(new CommandPing());
 		this.getCommand("suicide").setExecutor(new CommandSuicide());
 		this.getCommand("broadcast").setExecutor(new CommandBroadcast());
-		this.getCommand("invsee").setExecutor(new CommandInvsee());
+		this.getCommand("invsee").setExecutor(new CommandInvsee(new EssentialsInvseeInventoryEvent(), this));
 		this.getCommand("nuke").setExecutor(new CommandNuke());
 		this.getCommand("airstrike").setExecutor(new CommandAirstrike());
 		this.getCommand("disposal").setExecutor(new CommandDisposal());
 		this.getCommand("tpr").setExecutor(new CommandTpr());
 		this.getCommand("fullbright").setExecutor(new CommandFullBright());
 		this.getCommand("skull").setExecutor(new CommandSkull());
-		this.getCommand("batmount").setExecutor(new CommandBatMount());
-		this.getCommand("players").setExecutor(new CommandPlayers());
+		this.getCommand("batmount").setExecutor(new CommandBatMount(new EssentialsBatDismountEvent(), this));
+		this.getCommand("players").setExecutor(new CommandPlayers(new EssentialsPlayersInventoryEvent(), this));
 		this.getCommand("playerlist").setExecutor(new CommandPlayerList());
 		this.getCommand("getpos").setExecutor(new CommandGetPos());
 
@@ -64,8 +65,6 @@ public final class EssentialsY extends JavaPlugin {
 		this.getCommand("kick").setExecutor(new CommandKick());
 
 		getServer().getPluginManager().registerEvents(new EssentialsPlayerEvent(), this);
-		getServer().getPluginManager().registerEvents(new EssentialsInventoryEvent(), this);
-		getServer().getPluginManager().registerEvents(new EssentialsDismountEvent(), this);
 	}
 
 	@Override

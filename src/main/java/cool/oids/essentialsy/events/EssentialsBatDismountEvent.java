@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
-public class EssentialsDismountEvent implements Listener {
+public class EssentialsBatDismountEvent implements Listener {
 
 	@EventHandler
 	public void onDismount(EntityDismountEvent e) {

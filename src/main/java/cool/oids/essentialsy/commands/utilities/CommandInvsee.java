@@ -2,6 +2,7 @@ package cool.oids.essentialsy.commands.utilities;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
+import cool.oids.essentialsy.events.EssentialsInvseeInventoryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,8 +13,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
 
@@ -23,7 +27,9 @@ public class CommandInvsee extends PlayerExclusiveCommand implements Listener {
 	private final ItemStack plrHead;
 	private final String[] lore = new String[1];
 
-	public CommandInvsee() {
+	public CommandInvsee(EssentialsInvseeInventoryEvent event, Plugin plug) {
+		getServer().getPluginManager().registerEvents(event, plug);
+
 		equip = new ItemStack(Material.ARMOR_STAND);
 		ItemMeta meta = equip.getItemMeta();
 		assert meta != null;

@@ -2,6 +2,7 @@ package cool.oids.essentialsy.commands.utilities;
 
 import cool.oids.essentialsy.Utils;
 import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
+import cool.oids.essentialsy.events.EssentialsPlayersInventoryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,9 +12,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class CommandPlayers extends PlayerExclusiveCommand {
 
@@ -24,7 +28,9 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 	private static final ItemStack textList = new ItemStack(Material.ENCHANTED_BOOK);
 	public static ItemStack pageNum = new ItemStack(Material.PAPER);
 	public static ArrayList<Player> playerList = new ArrayList<>();
-	public CommandPlayers() {
+	public CommandPlayers(EssentialsPlayersInventoryEvent event, Plugin plug) {
+		getServer().getPluginManager().registerEvents(event, plug);
+
 		ItemMeta meta = next.getItemMeta();
 		assert meta != null;
 		meta.setDisplayName("" + ChatColor.GREEN + ChatColor.BOLD + "Next");
@@ -110,7 +116,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 		plrHead.setItemMeta(meta);
 
 		SkullMeta skullMeta = (SkullMeta) plrHead.getItemMeta();
-		skullMeta.setOwningPlayer(curPlayer);
+        skullMeta.setOwner(curPlayer.getDisplayName());
 		plrHead.setItemMeta(skullMeta);
 
 		return plrHead;
