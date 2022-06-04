@@ -97,6 +97,9 @@ commands:
   playerlist:
     description: Gives a list of all players online
     usage: /playerlist
+  getpos:
+    description: Gets the position of a player
+    usage: /getpos [player]
 
   tpa:
     description: Sends a request to teleport to another player
