@@ -38,9 +38,4 @@ public class CommandSkull extends PlayerExclusiveCommand {
 		sender.getInventory().addItem(skull);
 		sender.sendMessage(ChatColor.AQUA + "Given player " + playerNameColor + name + "'s " + ChatColor.AQUA + "skull");
 	}
-
 }
-
-
-//ADD RIDABLE BATS
-//PLAYERLIST GUI

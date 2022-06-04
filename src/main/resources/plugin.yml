@@ -92,8 +92,11 @@ commands:
     description: Mounts player to a flying bat
     usage: /batmount
   players:
-    description: Open a list of players online
+    description: Open a GUI of players online
     usage: /players
+  playerlist:
+    description: Gives a list of all players online
+    usage: /playerlist
 
   tpa:
     description: Sends a request to teleport to another player

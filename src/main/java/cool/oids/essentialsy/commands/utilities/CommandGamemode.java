@@ -21,7 +21,7 @@ public class CommandGamemode extends EssentialsCommand {
 			// /gmc
 			targetGamemode = retrieveGamemodeArg(label);
 		} else if (args.length > 1) {
-			// /gamemode creative kde4
+			// /gamemode creative PLAYER
 			targetGamemode = retrieveGamemodeArg(args[0]);
 			if (targetGamemode == null) {
 				sender.sendMessage(ChatColor.RED + "Not enough arguments provided");
@@ -32,7 +32,7 @@ public class CommandGamemode extends EssentialsCommand {
 		} else {
 			targetGamemode = retrieveGamemodeArg(args[0].toLowerCase(Locale.ENGLISH));
 			if (targetGamemode == null) {
-				// /gmc kde4
+				// /gmc PLAYER
 				targetGamemode = retrieveGamemodeArg(label);
 				receiver = Utils.extractPlayerArgWithWarnings(sender, args);
 			}
@@ -55,7 +55,8 @@ public class CommandGamemode extends EssentialsCommand {
 		String msg = ChatColor.AQUA + "Set gamemode for " + playerNameColor + receiver.getDisplayName() + ChatColor.AQUA + " to " + ChatColor.GOLD;
 
 		receiver.setGameMode(targetGamemode);
-		sender.sendMessage(msg + targetGamemode);
+		String gamemode = targetGamemode.toString().toLowerCase();
+		sender.sendMessage(msg + gamemode.substring(0, 1).toUpperCase() + gamemode.substring(1));
 	}
 
 	@Nullable
@@ -65,12 +66,11 @@ public class CommandGamemode extends EssentialsCommand {
 		} else if (arg.equalsIgnoreCase("gms") || arg.equalsIgnoreCase("survival")) {
 			return GameMode.SURVIVAL;
 		} else if (arg.equalsIgnoreCase("gma") || arg.equalsIgnoreCase("adventure")) {
-			return GameMode.SURVIVAL;
+			return GameMode.ADVENTURE;
 		} else if (arg.equalsIgnoreCase("gmsp") || arg.equalsIgnoreCase("spectator")) {
-			return GameMode.SURVIVAL;
+			return GameMode.SPECTATOR;
 		} else {
 			return null;
 		}
 	}
-
 }
