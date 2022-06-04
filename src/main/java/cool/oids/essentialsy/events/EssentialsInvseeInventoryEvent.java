@@ -15,7 +15,7 @@ public class EssentialsInvseeInventoryEvent implements Listener {
 
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if (e.getView().getTitle().equals("Players online") && e.getCurrentItem() != null) {
+		if (e.getView().getTitle().equals("Inventory selection") && e.getCurrentItem() != null) {
 			e.setCancelled(true);
 			Player sender = (Player) e.getWhoClicked();
 			Inventory plrInv = e.getView().getTopInventory();

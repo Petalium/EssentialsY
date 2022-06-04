@@ -18,7 +18,7 @@ public class EssentialsPlayersInventoryEvent implements Listener {
 
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if (e.getView().getTitle().equals("Inventory selection") && e.getCurrentItem() != null) {
+		if (e.getView().getTitle().equals("Players online") && e.getCurrentItem() != null) {
 			Player sender = (Player) e.getWhoClicked();
 			String pageNumName = Objects.requireNonNull(pageNum.getItemMeta()).getDisplayName();
 			int curPage = Integer.parseInt(pageNumName.substring(6).trim());
