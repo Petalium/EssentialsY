@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -17,6 +18,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -26,7 +28,6 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 	private static final ItemStack previous = new ItemStack(Material.SPECTRAL_ARROW);
 	private static final ItemStack nextBlock = new ItemStack(Material.BARRIER);
 	private static final ItemStack textList = new ItemStack(Material.ENCHANTED_BOOK);
-	public static ItemStack pageNum = new ItemStack(Material.PAPER);
 	public static ImmutableList<? extends Player> playerList = null;
 
 	public static final String[] lore = {
@@ -59,8 +60,6 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 	}
 
 	public static void newPage(int page, Player sender) {
-		playerList = Utils.getOnlinePlayers();
-
 		Inventory guiList = Bukkit.createInventory(sender, 54, "Players online");
 		ItemMeta meta;
 		ArrayList<ItemStack> allItems = new ArrayList<>();
@@ -79,7 +78,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 			}
 		}
 
-		if ((playerList.size() / (page * 45) > 0)) {
+		if ((allItems.size() / (page * 45) > 0)) {
 			guiList.setItem(8, next);
 		} else {
 			guiList.setItem(8, nextBlock);
@@ -91,6 +90,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 			guiList.setItem(0, textList);
 		}
 
+		ItemStack pageNum = new ItemStack(Material.PAPER);
 		meta = pageNum.getItemMeta();
 		assert meta != null;
 		meta.setDisplayName(ChatColor.GOLD + "Page " + page);
@@ -124,7 +124,14 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 		return plrHead;
 	}
 
+	public static int getPageNumber(InventoryView view) {
+		ItemStack pageNum = view.getItem(4);
+		String pageNumName = Objects.requireNonNull(pageNum.getItemMeta()).getDisplayName();
+		return Integer.parseInt(pageNumName.substring(6).trim());
+	}
+
 	public void run(Player sender, Command command, String label, String[] args) {
+		playerList = Utils.getOnlinePlayers();
 		newPage(1, sender);
 	}
 

@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.InventoryView;
 
 import java.util.Objects;
 
@@ -20,31 +21,26 @@ public class EssentialsPlayersInventoryEvent implements Listener {
 	public void onClick(InventoryClickEvent e) {
 		if (e.getView().getTitle().equals("Players online") && e.getCurrentItem() != null) {
 			Player sender = (Player) e.getWhoClicked();
-			String pageNumName = Objects.requireNonNull(pageNum.getItemMeta()).getDisplayName();
-			int curPage = Integer.parseInt(pageNumName.substring(6).trim());
+			InventoryView view = e.getView();
 
 			switch (e.getRawSlot()) {
 				case 0 -> {
-					if (Objects.requireNonNull(e.getView().getItem(0)).getType().equals(Material.ENCHANTED_BOOK)) {
-						StringBuilder list = new StringBuilder();
-						for (Player player : playerList) {
-							list.append(ChatColor.YELLOW).append(player.getDisplayName()).append(", ");
-						}
-						sender.sendMessage(ChatColor.AQUA + "Online players: " + ChatColor.GOLD + "(" + playerList.size() + ")\n" + list.substring(0, list.length() - 2));
+					if (view.getItem(0).getType().equals(Material.ENCHANTED_BOOK)) {
+						sender.performCommand("/playerlist");
 						sender.closeInventory();
 					} else {
 						sender.playSound(sender, Sound.UI_BUTTON_CLICK, 1, 1);
-						newPage(curPage - 1, sender);
+						newPage(getPageNumber(view) - 1, sender);
 					}
 				}
 				case 4 -> {
 				} //Add a page search feature
 				case 8 -> {
-					if (Objects.requireNonNull(e.getView().getItem(8)).getType().equals(Material.BARRIER)) {
+					if (Objects.requireNonNull(view.getItem(8)).getType().equals(Material.BARRIER)) {
 						sender.playSound(sender, Sound.ENTITY_VILLAGER_NO, 1, 1);
 					} else {
 						sender.playSound(sender, Sound.UI_BUTTON_CLICK, 1, 1);
-						newPage(curPage + 1, sender);
+						newPage(getPageNumber(view) + 1, sender);
 					}
 				}
 				default -> {
@@ -58,6 +54,7 @@ public class EssentialsPlayersInventoryEvent implements Listener {
 					}
 				}
 			}
+
 			e.setCancelled(true);
 		}
 	}
