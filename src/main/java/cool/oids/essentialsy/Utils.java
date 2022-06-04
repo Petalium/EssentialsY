@@ -68,8 +68,12 @@ public class Utils {
 	}
 
 	public static Player extractPlayerArgWithWarnings(CommandSender sender, String[] args) {
-		if (args.length > 0) {
-			String trimmed = args[0].trim();
+		return extractPlayerArgWithWarningsInner(sender, args, 0);
+	}
+
+	public static Player extractPlayerArgWithWarningsInner(CommandSender sender, String[] args, int index) {
+		if (args.length > index) {
+			String trimmed = args[index].trim();
 			if (trimmed.length() > 2) {
 				Player player = Bukkit.getPlayerExact(trimmed);
 
@@ -89,8 +93,12 @@ public class Utils {
 	}
 
 	public static String extractPlayerNameArg(CommandSender sender, String[] args) {
-		if (args.length > 0) {
-			String trimmed = args[0].trim();
+		return extractPlayerNameArgInner(sender, args, 0);
+	}
+
+	public static String extractPlayerNameArgInner(CommandSender sender, String[] args, int index) {
+		if (args.length > index) {
+			String trimmed = args[index].trim();
 			if (trimmed.length() > 2) {
 				return trimmed;
 			} else {
@@ -104,8 +112,12 @@ public class Utils {
 	}
 
 	public static Player extractPlayerArgOrSenderWithWarnings(CommandSender sender, String[] args) {
-		if (args.length > 0) {
-			String trimmed = args[0].trim();
+		return extractPlayerArgOrSenderWithWarningsInner(sender, args, 0);
+	}
+
+	public static Player extractPlayerArgOrSenderWithWarningsInner(CommandSender sender, String[] args, int index) {
+		if (args.length > index) {
+			String trimmed = args[index].trim();
 			if (trimmed.length() > 2) {
 				Player player = Bukkit.getPlayerExact(trimmed);
 				if (player == null) {

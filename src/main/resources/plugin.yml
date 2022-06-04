@@ -121,15 +121,7 @@ commands:
     description: Unbans player
     usage: /unban {Player}
 
-  gma:
-    description: Sets gamemode to adventure
-    usage: /gma [Player]
-  gmc:
-    description: Sets gamemode to creative
-    usage: /gmc [Player]
-  gms:
-    description: Sets gamemode to survival
-    usage: /gms [Player]
-  gmsp:
-    description: Sets gamemode to spectator
-    usage: /gmsp [Player]
+  gamemode:
+    description: Changes the player's gamemode
+    usage: /gamemode <survival|creative|adventure|spectator> [player]
+    aliases: [gmc, gms, gma, gmsp]

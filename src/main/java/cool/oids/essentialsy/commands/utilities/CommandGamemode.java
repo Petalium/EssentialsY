@@ -1,40 +1,75 @@
 package cool.oids.essentialsy.commands.utilities;
 
 import cool.oids.essentialsy.Utils;
-import cool.oids.essentialsy.commands.PlayerExclusiveCommand;
+import cool.oids.essentialsy.commands.EssentialsCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 
-public class CommandGamemode extends PlayerExclusiveCommand {
+import java.util.Locale;
 
-	public void run(Player sender, Command command, String label, String[] args) {
-		Player player = Utils.extractPlayerArgOrSenderWithWarnings(sender, args);
 
-		if (player != null) {
-			String msg = ChatColor.AQUA + "Set gamemode for " + playerNameColor + player.getDisplayName() + ChatColor.AQUA + " to " + ChatColor.GOLD;
+public class CommandGamemode extends EssentialsCommand {
 
-			switch (label) {
-				case "gma" -> {
-					player.setGameMode(GameMode.ADVENTURE);
-					sender.sendMessage(msg + "Adventure");
-				}
-				case "gmc" -> {
-					player.setGameMode(GameMode.CREATIVE);
-					sender.sendMessage(msg + "Creative");
-				}
-				case "gms" -> {
-					player.setGameMode(GameMode.SURVIVAL);
-					sender.sendMessage(msg + "Survival");
-				}
-				case "gmsp" -> {
-					player.setGameMode(GameMode.SPECTATOR);
-					sender.sendMessage(msg + "Spectator");
-				}
-				default -> {
-				}
+	public void run(CommandSender sender, Command command, String label, String[] args) {
+		GameMode targetGamemode;
+		Player receiver = null;
+		if (args.length == 0) {
+			// /gmc
+			targetGamemode = retrieveGamemodeArg(label);
+		} else if (args.length > 1) {
+			// /gamemode creative kde4
+			targetGamemode = retrieveGamemodeArg(args[0]);
+			if (targetGamemode == null) {
+				sender.sendMessage(ChatColor.RED + "Not enough arguments provided");
+				return;
 			}
+
+			receiver = Utils.extractPlayerArgWithWarningsInner(sender, args, 1);
+		} else {
+			targetGamemode = retrieveGamemodeArg(args[0].toLowerCase(Locale.ENGLISH));
+			if (targetGamemode == null) {
+				// /gmc kde4
+				targetGamemode = retrieveGamemodeArg(label);
+				receiver = Utils.extractPlayerArgWithWarnings(sender, args);
+			}
+		}
+
+		if (receiver == null) {
+			if (sender instanceof Player player) {
+				receiver = player;
+			} else {
+				ranFromConsoleError(sender);
+				return;
+			}
+		}
+
+		if (targetGamemode == null) {
+			sender.sendMessage(ChatColor.RED + "Not enough arguments provided");
+			return;
+		}
+
+		String msg = ChatColor.AQUA + "Set gamemode for " + playerNameColor + receiver.getDisplayName() + ChatColor.AQUA + " to " + ChatColor.GOLD;
+
+		receiver.setGameMode(targetGamemode);
+		sender.sendMessage(msg + targetGamemode);
+	}
+
+	@Nullable
+	private GameMode retrieveGamemodeArg(String arg) {
+		if (arg.equalsIgnoreCase("gmc") || arg.equalsIgnoreCase("creative")) {
+			return GameMode.CREATIVE;
+		} else if (arg.equalsIgnoreCase("gms") || arg.equalsIgnoreCase("survival")) {
+			return GameMode.SURVIVAL;
+		} else if (arg.equalsIgnoreCase("gma") || arg.equalsIgnoreCase("adventure")) {
+			return GameMode.SURVIVAL;
+		} else if (arg.equalsIgnoreCase("gmsp") || arg.equalsIgnoreCase("spectator")) {
+			return GameMode.SURVIVAL;
+		} else {
+			return null;
 		}
 	}
 

@@ -55,10 +55,7 @@ public final class EssentialsY extends JavaPlugin {
 		this.getCommand("tpdeny").setExecutor(new CommandTpaRespond());
 		this.getCommand("tpacancel").setExecutor(new CommandTpaCancel());
 
-		this.getCommand("gma").setExecutor(new CommandGamemode());
-		this.getCommand("gms").setExecutor(new CommandGamemode());
-		this.getCommand("gmc").setExecutor(new CommandGamemode());
-		this.getCommand("gmsp").setExecutor(new CommandGamemode());
+		this.getCommand("gamemode").setExecutor(new CommandGamemode());
 
 		this.getCommand("ban").setExecutor(new CommandBan());
 		this.getCommand("unban").setExecutor(new CommandUnban());
