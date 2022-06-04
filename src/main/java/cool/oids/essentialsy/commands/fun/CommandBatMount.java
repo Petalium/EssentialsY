@@ -12,9 +12,11 @@ import org.bukkit.plugin.Plugin;
 import static org.bukkit.Bukkit.getServer;
 
 public class CommandBatMount extends PlayerExclusiveCommand {
-public CommandBatMount(EssentialsBatDismountEvent event, Plugin plug) {
-	getServer().getPluginManager().registerEvents(event, plug);
-}
+
+	public CommandBatMount(EssentialsBatDismountEvent event, Plugin plug) {
+		getServer().getPluginManager().registerEvents(event, plug);
+	}
+
 	public void run(Player sender, Command command, String label, String[] args) {
 		World world = sender.getWorld();
 		Entity bat = world.spawnEntity(sender.getLocation(), EntityType.BAT);

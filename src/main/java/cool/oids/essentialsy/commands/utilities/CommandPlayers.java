@@ -28,6 +28,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 	private static final ItemStack textList = new ItemStack(Material.ENCHANTED_BOOK);
 	public static ItemStack pageNum = new ItemStack(Material.PAPER);
 	public static ArrayList<Player> playerList = new ArrayList<>();
+
 	public CommandPlayers(EssentialsPlayersInventoryEvent event, Plugin plug) {
 		getServer().getPluginManager().registerEvents(event, plug);
 
@@ -75,7 +76,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 
 		ArrayList<ItemStack> newItems = getPageItems(allItems, page, 45);
 		for (int i = 0; i < newItems.size(); i++) {
-			guiList.setItem(i+9, newItems.get(i));
+			guiList.setItem(i + 9, newItems.get(i));
 		}
 
 		if ((onlinePlayers.size() / (page * 45) > 0)) {
@@ -101,7 +102,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 
 	public static void playerStats(Player sender, Player player) {
 		Inventory plrStats = Bukkit.createInventory(player, 27, ChatColor.RED + "W.I.P");
-		plrStats.setItem(0,getPlayerSkull(player, new String[] {ChatColor.GRAY + "UUID: " + ChatColor.GOLD + player.getUniqueId()}));
+		plrStats.setItem(0, getPlayerSkull(player, new String[]{ChatColor.GRAY + "UUID: " + ChatColor.GOLD + player.getUniqueId()}));
 
 		sender.closeInventory();
 		sender.openInventory(plrStats);
@@ -116,7 +117,7 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 		plrHead.setItemMeta(meta);
 
 		SkullMeta skullMeta = (SkullMeta) plrHead.getItemMeta();
-        skullMeta.setOwner(curPlayer.getDisplayName());
+		skullMeta.setOwner(curPlayer.getDisplayName());
 		plrHead.setItemMeta(skullMeta);
 
 		return plrHead;
@@ -141,4 +142,5 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 	public void run(Player sender, Command command, String label, String[] args) {
 		newPage(1, sender);
 	}
+
 }

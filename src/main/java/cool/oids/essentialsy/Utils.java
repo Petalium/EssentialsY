@@ -5,7 +5,6 @@ import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -163,4 +162,5 @@ public class Utils {
 	public static ArrayList<Player> getOnlinePlayers() {
 		return new ArrayList<>(Bukkit.getOnlinePlayers());
 	}
+
 }

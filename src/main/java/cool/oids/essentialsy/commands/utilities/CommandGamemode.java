@@ -73,4 +73,5 @@ public class CommandGamemode extends EssentialsCommand {
 			return null;
 		}
 	}
+
 }

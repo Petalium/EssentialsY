@@ -9,11 +9,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandPlayerList extends EssentialsCommand {
-    public void run(CommandSender sender, Command command, String label, String[] args) {
-        StringBuilder list = new StringBuilder();
-        for (Player player : Utils.getOnlinePlayers()) {
-            list.append(ChatColor.YELLOW).append(player.getDisplayName()).append(", ");
-        }
-        sender.sendMessage(ChatColor.AQUA + "Online players: " + ChatColor.GOLD + "(" + Bukkit.getOnlinePlayers().size() + ")\n" + list.substring(0,list.length() - 2));
-    }
+
+	public void run(CommandSender sender, Command command, String label, String[] args) {
+		StringBuilder list = new StringBuilder();
+		for (Player player : Utils.getOnlinePlayers()) {
+			list.append(ChatColor.YELLOW).append(player.getDisplayName()).append(", ");
+		}
+		sender.sendMessage(ChatColor.AQUA + "Online players: " + ChatColor.GOLD + "(" + Bukkit.getOnlinePlayers().size() + ")\n" + list.substring(0, list.length() - 2));
+	}
+
 }
