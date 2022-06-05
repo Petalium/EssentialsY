@@ -70,9 +70,11 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 
 		int upperBound = page * 45;
 		int lowerBound = upperBound - 45;
-		for (int i = lowerBound; i < allItems.size(); i++) {
+		int slot = 0;
+		for (int i = lowerBound; i < upperBound; i++) {
 			try {
-				guiList.setItem(i + 9, allItems.get(i));
+				guiList.setItem(slot + 9, allItems.get(i));
+				slot++;
 			} catch (IndexOutOfBoundsException e) {
 				break;
 			}
@@ -132,6 +134,13 @@ public class CommandPlayers extends PlayerExclusiveCommand {
 
 	public void run(Player sender, Command command, String label, String[] args) {
 		playerList = Utils.getOnlinePlayers();
+
+//		ArrayList<Player> test = new ArrayList<>();		//Generates clones for testing
+//		for (int i = 0; i < 200; i++) {
+//			test.add(sender);
+//		}
+//		playerList = ImmutableList.copyOf(test);
+
 		newPage(1, sender);
 	}
 

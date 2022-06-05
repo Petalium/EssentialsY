@@ -26,8 +26,8 @@ public class EssentialsPlayersInventoryEvent implements Listener {
 			switch (e.getRawSlot()) {
 				case 0 -> {
 					if (view.getItem(0).getType().equals(Material.ENCHANTED_BOOK)) {
-						sender.performCommand("/playerlist");
 						sender.closeInventory();
+						sender.performCommand("playerlist");
 					} else {
 						sender.playSound(sender, Sound.UI_BUTTON_CLICK, 1, 1);
 						newPage(getPageNumber(view) - 1, sender);
