@@ -51,6 +51,7 @@ public final class EssentialsY extends JavaPlugin {
 		this.getCommand("players").setExecutor(new CommandPlayers(new EssentialsPlayersInventoryEvent(), this));
 		this.getCommand("playerlist").setExecutor(new CommandPlayerList());
 		this.getCommand("getpos").setExecutor(new CommandGetPos());
+		this.getCommand("platform").setExecutor(new CommandPlatform());
 
 		this.getCommand("tpa").setExecutor(new CommandTpa());
 		this.getCommand("tpahere").setExecutor(new CommandTpahere());

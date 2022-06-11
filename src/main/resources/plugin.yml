@@ -100,6 +100,9 @@ commands:
   getpos:
     description: Gets the position of a player
     usage: /getpos [player]
+  platform:
+    description: Creates a platform underneath the player
+    usage: /platform {Size}
 
   tpa:
     description: Sends a request to teleport to another player
