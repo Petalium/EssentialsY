@@ -103,6 +103,9 @@ commands:
   platform:
     description: Creates a platform underneath the player
     usage: /platform {Size}
+  more:
+    description: Adds more to the held stack
+    usage: /more [amount]
 
   tpa:
     description: Sends a request to teleport to another player
