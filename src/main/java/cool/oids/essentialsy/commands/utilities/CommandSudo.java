@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 
 import static cool.oids.essentialsy.Utils.extractPlayerArgWithWarnings;
+import static cool.oids.essentialsy.Utils.getMessage;
 
 public class CommandSudo extends EssentialsCommand {
     public void run(CommandSender sender, Command command, String label, String[] args) {
@@ -28,7 +29,7 @@ public class CommandSudo extends EssentialsCommand {
                 return;
             }
 
-            String message = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
+            String message = getMessage(args, 2);
 
             if (isCommand) {
                 player.performCommand(message);
