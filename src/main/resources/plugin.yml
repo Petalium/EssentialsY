@@ -48,7 +48,7 @@ commands:
   workbench:
     description: Opens workbench
     usage: /workbench
-    aliases: [craftingtable, wb, craftingbench]
+    aliases: [craftingtable, wb, craftingbench, craft]
   bigtree:
     description: Spawns a random big tree where the player is facing
     usage: /bigtree
@@ -85,6 +85,7 @@ commands:
   fullbright:
     description: Toggles fullbright
     usage: /fullbright [Player]
+    aliases: [fb]
   skull:
     description: Gets player skulls
     usage: /skull [Player]
@@ -109,6 +110,9 @@ commands:
   sudo:
     description: Forces a specified player to send a message or command
     usage: /sudo <player> <message|command> {message}
+  break:
+    description: Breaks the block the player is looking at
+    usage: /break
 #  ptime:
 #    description: Sets the time for the player
 #    usage: /ptime [player] {time}
