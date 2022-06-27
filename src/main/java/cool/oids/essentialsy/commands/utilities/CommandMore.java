@@ -11,7 +11,7 @@ public class CommandMore extends PlayerExclusiveCommand {
     @Override
     public void run(Player player, Command command, String label, String[] args) {
         ItemStack itemStack = player.getInventory().getItemInMainHand();
-        if (!itemStack.hasItemMeta()) {
+        if (itemStack.getType().isAir()) {
             player.sendMessage(ChatColor.RED + "Hold an item in your main hand");
             return;
         }
