@@ -106,6 +106,15 @@ commands:
   more:
     description: Adds more to the held stack
     usage: /more [amount]
+  sudo:
+    description: Forces a specified player to send a message or command
+    usage: /sudo <player> <message|command> {message}
+#  ptime:
+#    description: Sets the time for the player
+#    usage: /ptime [player] {time}
+#  pweather:
+#    description: Sets the weather for the player
+#    usage: /pweather [player] {weather}
 
   tpa:
     description: Sends a request to teleport to another player

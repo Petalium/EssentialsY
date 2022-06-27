@@ -53,6 +53,9 @@ public final class EssentialsY extends JavaPlugin {
 		this.getCommand("getpos").setExecutor(new CommandGetPos());
 		this.getCommand("platform").setExecutor(new CommandPlatform());
 		this.getCommand("more").setExecutor(new CommandMore());
+		this.getCommand("sudo").setExecutor(new CommandSudo());
+//		this.getCommand("ptime").setExecutor(new CommandPTime());
+//		this.getCommand("pweather").setExecutor(new CommandPWeather());
 
 		this.getCommand("tpa").setExecutor(new CommandTpa());
 		this.getCommand("tpahere").setExecutor(new CommandTpahere());
