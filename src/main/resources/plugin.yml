@@ -85,10 +85,11 @@ commands:
   fullbright:
     description: Toggles fullbright
     usage: /fullbright [Player]
-    aliases: [fb]
+    aliases: [fb, nv, nightvision]
   skull:
     description: Gets player skulls
     usage: /skull [Player]
+    aliases: [head]
   batmount:
     description: Mounts player to a flying bat
     usage: /batmount
@@ -98,6 +99,7 @@ commands:
   playerlist:
     description: Gives a list of all players online
     usage: /playerlist
+    aliases: [pl]
   getpos:
     description: Gets the position of a player
     usage: /getpos [player]
@@ -113,6 +115,10 @@ commands:
   break:
     description: Breaks the block the player is looking at
     usage: /break
+  powertool:
+    description: Creates an item that runs a command when used
+    usage: /powertool <command>
+    aliases: [pt]
 #  ptime:
 #    description: Sets the time for the player
 #    usage: /ptime [player] {time}
